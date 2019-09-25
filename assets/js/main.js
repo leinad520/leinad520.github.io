@@ -414,6 +414,12 @@
 		}
 	}
 
-	window.onload = function() {
+	// window.onload = function() {
+	// 	document.getElementById("player").play();
+	// }
+
+	function playAudio() {
 		document.getElementById("player").play();
 	}
+
+	window.onload = setTimeout(playAudio, 3000)
