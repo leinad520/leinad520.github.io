@@ -1,5 +1,22 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
+@font-face {
+    font-family: 'matrixmedium';
+    src: url('../webfonts-matrix/matrix-webfont.woff2') format('woff2'),
+         url('../webfonts-matrix/matrix-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'matrixregular';
+    src: url('../webfonts-matrix2/matrix-webfont.woff2') format('woff2'),
+         url('../webfonts-matrix/matrix-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 /*
 	Dimension by HTML5 UP
