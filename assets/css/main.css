@@ -1300,6 +1300,10 @@ input, select, textarea {
 				display: none;
 			}
 
+			#header > :nth-child(2):before {
+				display: none;
+			}
+
 		#header .logo {
 			width: 5.5rem;
 			height: 5.5rem;
@@ -1686,5 +1690,11 @@ input, select, textarea {
 
 		#volume-btn {
 			font-size: 140%;
+		}
 
+		#social-media {
+			display: flex;
+			width: 100vw;
+			justify-content: flex-end;
+			padding-right: 2rem;ƒ#
 		}
