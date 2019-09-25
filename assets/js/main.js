@@ -29,8 +29,6 @@
 			window.setTimeout(function() {
 				$body.removeClass('is-preload');
 			}, 100);
-			//play audio on load
-			document.getElementById("player").play();
 		});
 
 	// Fix: Flexbox min-height bug on IE.
@@ -414,4 +412,8 @@
 			x.classList.add("fa-volume-up");
 			player.play();
 		}
+	}
+
+	window.onload = function() {
+		document.getElementById("player").play();
 	}
