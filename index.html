@@ -11,6 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<audio id='player' autoplay loop src="./assets/matrix-song-cut.mp3" type="audio/mpeg"></audio>
+
 	</head>
 	<body class="is-preload">
 
@@ -20,9 +22,9 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<span class="icon fa-user"></span>
-							<!-- <span><i class="fas fa-capsules"></i></span> -->
+							<i id="volume-btn" class="fas fa-volume-up" onclick="toggleFunc(this)"></i>
 						</div>
+
 						<div class="content">
 							<div class="inner">
 								<h1 style="font-family: 'matrixregular'">Daniel Sangyoon Kim</h1>
@@ -130,7 +132,7 @@
 								<p>Practicing my favorite classical piece. <br>Recorded in 2016.</p>
 								<br>
 
-								<iframe width="560" height="315" src="https://www.youtube.com/embed/lZgI_yQcghM?start=5" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/lZgI_yQcghM?" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 								<p>Howl's Moving Castle, Chopin style. <br>Recorded in 2016.</p>
 								<br>
 							</article>
