@@ -29,6 +29,8 @@
 			window.setTimeout(function() {
 				$body.removeClass('is-preload');
 			}, 100);
+			//play audio on load
+			document.getElementById("player").play();
 		});
 
 	// Fix: Flexbox min-height bug on IE.
