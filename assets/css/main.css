@@ -1714,7 +1714,7 @@ input, select, textarea {
 			color: #00ff95; 
 			font-family: 'source sans pro';
 			font-weight: 200;
-			font-size: 12px;
+			font-size: 15px;
 			padding: 0px;
 			margin-bottom: 0px;
 			margin-top: 5px;
@@ -1723,6 +1723,9 @@ input, select, textarea {
 		@media (max-width: 400px) {
 			#volume-btn {
 				margin-top: 15px;
+			}
+			#click {
+				font-size: 12px;
 			}
 		}
 		
