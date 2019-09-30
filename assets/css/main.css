@@ -1762,7 +1762,7 @@ input, select, textarea {
 			border-right: solid 3px transparent;
   			white-space: nowrap;
   			overflow: hidden;    
-			animation: animated-text 3s steps(80,end) 0.3s 1 normal both,
+			animation: animated-text 3.5s steps(80,end) 0.3s 1 normal both,
 					   animated-cursor 600ms steps(29,end) infinite;
 		  }
 
