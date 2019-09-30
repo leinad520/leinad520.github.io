@@ -1310,6 +1310,8 @@ input, select, textarea {
 			line-height: 5.5rem;
 			border: solid 1px #ffffff;
 			border-radius: 100%;
+			/* display: flex;
+			justify-content: center; */
 		}
 
 			#header .logo .icon:before {
@@ -1689,10 +1691,6 @@ input, select, textarea {
 			color: #00ff95;
 		  }
 
-		#volume-btn {
-			font-size: 140%;
-		}
-
 		#social-media {
 			display: flex;
 			width: 100vw;
@@ -1704,5 +1702,20 @@ input, select, textarea {
 			button.container {
 				margin-top: 10px;
 			}
+		}
+
+		#volume-btn {
+			font-size: 140%;
+			padding: 0px;
+			margin-top: 25px;
+		}
+
+		#click {
+			color: #00ff95; 
+			font-family: 'matrixregular';
+			font-size: 12px;
+			padding: 0px;
+			margin-bottom: 0px;
+			margin-top: 5px;
 		}
 		
