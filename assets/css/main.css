@@ -1720,12 +1720,80 @@ input, select, textarea {
 			margin-top: 5px;
 		}
 
-		@media (max-width: 400px) {
+		
+		.hello-text {
+			color: #00ff95; 
+			font-family: 'matrixregular';
+		}
+
+		.hello-container {
+			display: inline-block;
+			height: 30px;
+		}
+
+		.hello-container-2 {
+			display: block;
+			height: 30px;
+		}
+
+		.hello-container-3 {
+			display: none;
+			height: 30px;
+		}
+		
+		.typewriter {
+			border-right: solid 3px transparent;
+  			white-space: nowrap;
+  			overflow: hidden;    
+			animation: animated-text 4s steps(80,end) 0.3s 1 normal both,
+					   animated-cursor 600ms steps(29,end) 8;
+		  }
+
+		  .typewriter-2 {
+			border-right: solid 3px transparent;
+  			white-space: nowrap;
+  			overflow: hidden;    
+			animation: animated-text 5s steps(80,end) 5s 1 normal both,
+					   animated-cursor 600ms steps(29,end) infinite;
+			animation-delay: 5s;
+		  }
+
+		  .typewriter-3 {
+			border-right: solid 3px transparent;
+  			white-space: nowrap;
+  			overflow: hidden;    
+			animation: animated-text 3s steps(80,end) 0.3s 1 normal both,
+					   animated-cursor 600ms steps(29,end) infinite;
+		  }
+
+		  
+		  /* text animation */
+		  
+		  @keyframes animated-text{
+			from{width: 0;}
+			to{width: 100%;}
+		  }
+		  
+		  /* cursor animations */
+		  
+		  @keyframes animated-cursor{
+			from{border-right-color: rgba(0,255,0,.75);}
+			to{border-right-color: transparent;}
+		  }
+		  
+
+		  @media (max-width: 480px) {
 			#volume-btn {
 				margin-top: 15px;
 			}
 			#click {
 				font-size: 12px;
 			}
+			.hello-container, .hello-container-2 {
+				display: none;
+			}
+			.hello-container-3 {
+				display: inline-block;
+			}
+
 		}
-		
