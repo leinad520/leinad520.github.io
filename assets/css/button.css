@@ -25,7 +25,7 @@ body {
 }
 .container a {
   text-transform: uppercase;
-  text-decoration: none;
+  /* text-decoration: none; */
   font-weight: 700;
 }
 @keyframes top {
