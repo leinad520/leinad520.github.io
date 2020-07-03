@@ -9,6 +9,20 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'computerType';
+    src: url('../computerType.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'glitchFont';
+    src: url('../glitch-font.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* @font-face {
     font-family: 'Inter';
     src: url('../webfonts/Inter-Regular.woff') format('woff'),
@@ -1732,7 +1746,7 @@ input, select, textarea {
 		
 		.hello-text {
 			color: #00ff95; 
-			font-family: 'matrixregular';
+			/* font-family: 'computerType'; */
 		}
 
 		.hello-container {
