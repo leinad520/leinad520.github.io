@@ -417,12 +417,6 @@
 	// window.onload = function() {
 	// 	document.getElementById("player").play();
 	// }
-	$("body").addEventListener('click', event => {
-		var audio = document.getElementById("player");
-		if(audio.paused) {
-			document.getElementById("player").play();
-		}
-	  });
 
 	$("body").mousemove(function(){
 		document.getElementById("player").play();
