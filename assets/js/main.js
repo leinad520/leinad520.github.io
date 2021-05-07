@@ -418,7 +418,9 @@
 	// 	document.getElementById("player").play();
 	// }
 
-	  
+	$("body").mousemove(function(){
+		document.getElementById("player").play();
+	}
 
 	// function playAudio() {
 	// 	document.getElementById("player").play();
