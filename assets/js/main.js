@@ -418,11 +418,6 @@
 	// 	document.getElementById("player").play();
 	// }
 
-	window.addEventListener("DOMContentLoaded", event => {
-		const audio = document.getElementById('player');
-		audio.volume = 0.2;
-		audio.play();
-	  });
 	  
 
 	// function playAudio() {
