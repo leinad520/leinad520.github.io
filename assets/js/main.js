@@ -414,13 +414,13 @@
 		}
 	}
 
-	// window.onload = function() {
-	// 	document.getElementById("player").play();
-	// 	// this.toggleFunc(document.getElementById("volume-btn"))
-	// }
-
-	function playAudio() {
+	window.onload = function() {
 		document.getElementById("player").play();
+		// this.toggleFunc(document.getElementById("volume-btn"))
 	}
 
-	$window.onload = setTimeout(playAudio, 1000)
+	// function playAudio() {
+	// 	document.getElementById("player").play();
+	// }
+
+	// $window.onload = setTimeout(playAudio, 1000)
