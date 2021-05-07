@@ -418,15 +418,15 @@
 	// 	document.getElementById("player").play();
 	// }
 
-	$("body").mousemove(function(){
-		var icon = document.getElementById("volume-btn");
-		if (icon.classList.contains("fa-volume-mute")) {return};
-		document.getElementById("player").play();
-	})
+	// $("body").mousemove(function(){
+	// 	var icon = document.getElementById("volume-btn");
+	// 	if (icon.classList.contains("fa-volume-mute")) {return};
+	// 	document.getElementById("player").play();
+	// })
 
-	$("body").touchstart(function(){
-		document.getElementById("player").play();
-	})
+	// $("body").touchstart(function(){
+	// 	document.getElementById("player").play();
+	// })
 
 	// function playAudio() {
 	// 	document.getElementById("player").play();
