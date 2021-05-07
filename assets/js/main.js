@@ -423,4 +423,4 @@
 		document.getElementById("player").play();
 	}
 
-	window.onload = setTimeout(playAudio, 1000)
+	$window.onload = setTimeout(playAudio, 1000)
