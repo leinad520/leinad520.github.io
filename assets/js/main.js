@@ -419,6 +419,7 @@
 	// }
 
 	$("body").mousemove(function(){
+		if (this.classList.contains("fa-volume-mute")) {return};
 		document.getElementById("player").play();
 	})
 
