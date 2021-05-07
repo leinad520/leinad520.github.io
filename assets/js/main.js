@@ -414,10 +414,16 @@
 		}
 	}
 
-	window.onload = function() {
-		document.getElementById("player").play();
-		// this.toggleFunc(document.getElementById("volume-btn"))
-	}
+	// window.onload = function() {
+	// 	document.getElementById("player").play();
+	// }
+
+	window.addEventListener("DOMContentLoaded", event => {
+		const audio = document.getElementById('player');
+		audio.volume = 0.2;
+		audio.play();
+	  });
+	  
 
 	// function playAudio() {
 	// 	document.getElementById("player").play();
