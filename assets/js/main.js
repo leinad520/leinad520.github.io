@@ -422,6 +422,10 @@
 		document.getElementById("player").play();
 	})
 
+	$("body").touchstart(function(){
+		document.getElementById("player").play();
+	})
+
 	// function playAudio() {
 	// 	document.getElementById("player").play();
 	// }
