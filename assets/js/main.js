@@ -414,7 +414,7 @@
 		}
 	}
 
-	$window.onload = function() {
+	window.onload = function() {
 		document.getElementById("player").play();
 		// this.toggleFunc(document.getElementById("volume-btn"))
 	}
