@@ -1789,6 +1789,13 @@ input, select, textarea {
 					   animated-cursor 600ms steps(29,end) infinite;
 		  }
 
+		  .blue-pill {
+			  color: rgb(21, 82, 238);
+		  }
+
+		  .red-pill {
+			color: red;
+		}
 		  
 		  /* text animation */
 		  
