@@ -1795,7 +1795,7 @@ input, select, textarea {
   			overflow: hidden;    
 			animation: animated-text 3.5s steps(80,end) 0.3s 1 normal both,
 					   animated-cursor 600ms steps(29,end) infinite;
-			animation-delay: 9s;
+			animation-delay: 10s;
 		  }
 
 		  
