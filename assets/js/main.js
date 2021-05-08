@@ -417,9 +417,9 @@
 	function toggleFunc(x) {
 		var player = document.getElementById('player');
 		if (x.style.color = "rgb(0, 114, 254)") {
-			x.style.color = "red";
+			x.style.color = "rgb(255,0,0)";
 			player.play();
-		} else if (x.style.color = "red") {
+		} else if (x.style.color = "rgb(255,0,0)") {
 			x.style.color = "rgb(0, 114, 254)";
 			player.pause();
 		}
