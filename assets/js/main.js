@@ -416,9 +416,8 @@
 
 	function toggleFunc(x) {
 		var player = document.getElementById('player');
-		if (x.classList.contains("blue-pill")) {
-			x.classList.remove("blue-pill")
-			x.classList.add("red-pill");
+		if (x.style.color = "blue") {
+			x.style.color = "red";
 			player.play();
 		}
 	}
