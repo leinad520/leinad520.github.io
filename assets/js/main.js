@@ -419,7 +419,8 @@
 		if (x.style.color = "rgb(0, 114, 254)") {
 			x.style.color = "red";
 			player.play();
-		} else if (x.style.color = "red") {
+		}
+		if (x.style.color = "red") {
 			x.style.color = "rgb(0, 114, 254)";
 			player.pause();
 		}
