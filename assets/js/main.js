@@ -419,6 +419,9 @@
 		if (x.style.color = "blue") {
 			x.style.color = "red";
 			player.play();
+		} else if (x.style.color = "red") {
+			x.style.color = "blue";
+			player.pause();
 		}
 	}
 
