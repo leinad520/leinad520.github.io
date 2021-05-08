@@ -416,11 +416,11 @@
 
 	function toggleFunc(x) {
 		var player = document.getElementById('player');
-		if (x.style.color = "blue") {
+		if (x.style.color = "rgb(0, 114, 254)") {
 			x.style.color = "red";
 			player.play();
 		} else if (x.style.color = "red") {
-			x.style.color = "blue";
+			x.style.color = "rgb(0, 114, 254)";
 			player.pause();
 		}
 	}
