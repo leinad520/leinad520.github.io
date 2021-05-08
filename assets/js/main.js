@@ -414,17 +414,30 @@
 	// 	}
 	// }
 
+	// function toggleFunc(x) {
+	// 	var player = document.getElementById('player');
+	// 	if (x.style.color = "rgb(255,0,0)") {
+	// 		x.style.color = "rgb(0, 114, 254)";
+	// 		player.pause();
+	// 	}
+	// 	if (x.style.color = "rgb(0, 114, 254)") {
+	// 		x.style.color = "rgb(255,0,0)";
+	// 		player.play();
+	// 	}
+	
+	// }
+	
 	function toggleFunc(x) {
 		var player = document.getElementById('player');
-		if (x.style.color = "rgb(255,0,0)") {
-			x.style.color = "rgb(0, 114, 254)";
+		if (x.classList.contains("blue-pill")) {
+			x.classList.remove("blue-pill")
+			x.classList.add("red-pill");
+			player.play();
+		} else if (x.classList.contains("red-pill")) {
+			x.classList.remove("red-pill")
+			x.classList.add("blue-pill");
 			player.pause();
 		}
-		if (x.style.color = "rgb(0, 114, 254)") {
-			x.style.color = "rgb(255,0,0)";
-			player.play();
-		}
-	
 	}
 
 	// window.onload = function() {
