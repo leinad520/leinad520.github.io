@@ -1789,24 +1789,13 @@ input, select, textarea {
 					   animated-cursor 600ms steps(29,end) infinite;
 		  }
 
-		  .ele {
-			/* background-color: #ff6699; */
-			animation: 10s fadeIn;
-			animation-fill-mode: forwards;
-			
-			visibility: hidden;
-		  }
-		  
-		  @keyframes fadeIn {
-			0% {
-			  opacity: 0;
-			}
-			100% {
-			  visibility: visible;
-			  opacity: 1;
-			}
+		  .blue-pill {
+			  color: blue;
 		  }
 
+		  .red-pill {
+			color: red;
+		}
 		  
 		  /* text animation */
 		  

@@ -401,15 +401,24 @@
 })(jQuery);
 
 // Dan's js
+	// function toggleFunc(x) {
+	// 	var player = document.getElementById('player');
+	// 	if (x.classList.contains("fa-volume-up")) {
+	// 		x.classList.remove("fa-volume-up")
+	// 		x.classList.add("fa-volume-mute");
+	// 		player.pause();
+	// 	} else if (x.classList.contains("fa-volume-mute")) {
+	// 		x.classList.remove("fa-volume-mute")
+	// 		x.classList.add("fa-volume-up");
+	// 		player.play();
+	// 	}
+	// }
+
 	function toggleFunc(x) {
 		var player = document.getElementById('player');
-		if (x.classList.contains("fa-volume-up")) {
-			x.classList.remove("fa-volume-up")
-			x.classList.add("fa-volume-mute");
-			player.pause();
-		} else if (x.classList.contains("fa-volume-mute")) {
-			x.classList.remove("fa-volume-mute")
-			x.classList.add("fa-volume-up");
+		if (x.classList.contains("blue-pill")) {
+			x.classList.remove("blue-pill")
+			x.classList.add("red-pill");
 			player.play();
 		}
 	}
