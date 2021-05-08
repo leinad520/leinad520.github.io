@@ -420,7 +420,7 @@
 			x.style.color = "red";
 			player.play();
 		}
-		if (x.style.color = "red") {
+		if (x.style.color = "red;") {
 			x.style.color = "rgb(0, 114, 254)";
 			player.pause();
 		}
