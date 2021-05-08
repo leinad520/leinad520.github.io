@@ -1808,6 +1808,7 @@ input, select, textarea {
 		  @media (max-width: 980px) {
 			#volume-btn {
 				margin-top: 15px;
+				cursor: pointer;
 			}
 			#click {
 				font-size: 12px;
