@@ -1700,6 +1700,16 @@ input, select, textarea {
 		}
 
 		/* Dan's CSS */
+
+		/* For heavier japanese matrix background, uncomment below and comment out the other gif background */
+		/* #myVideo {
+			position: fixed;
+			right: 0;
+			bottom: 0;
+			min-width: 100%;
+			min-height: 100%;
+		} */
+
 		.subtitle {
 			font-size: .7rem;
 		}
@@ -1734,7 +1744,7 @@ input, select, textarea {
 		}
 
 		#click {
-			color: #00ff95; 
+			color: #00ff95;
 			font-family: 'source sans pro';
 			font-weight: 200;
 			font-size: 15px;
@@ -1743,9 +1753,9 @@ input, select, textarea {
 			margin-top: 5px;
 		}
 
-		
+
 		.hello-text {
-			color: #00ff95; 
+			color: #00ff95;
 			/* font-family: 'computerType'; */
 		}
 
@@ -1763,11 +1773,11 @@ input, select, textarea {
 			display: none;
 			height: 30px;
 		}
-		
+
 		.typewriter {
 			border-right: solid 3px transparent;
   			white-space: nowrap;
-  			overflow: hidden;    
+  			overflow: hidden;
 			animation: animated-text 4s steps(80,end) 0.3s 1 normal both,
 					   animated-cursor 600ms steps(29,end) 8;
 		  }
@@ -1775,7 +1785,7 @@ input, select, textarea {
 		  .typewriter-2 {
 			border-right: solid 3px transparent;
   			white-space: nowrap;
-  			overflow: hidden;    
+  			overflow: hidden;
 			animation: animated-text 5s steps(80,end) 5s 1 normal both,
 					   animated-cursor 600ms steps(29,end) infinite;
 			animation-delay: 5s;
@@ -1784,7 +1794,7 @@ input, select, textarea {
 		  .typewriter-3 {
 			border-right: solid 3px transparent;
   			white-space: nowrap;
-  			overflow: hidden;    
+  			overflow: hidden;
 			animation: animated-text 3.5s steps(80,end) 0.3s 1 normal both,
 					   animated-cursor 600ms steps(29,end) infinite;
 		  }
@@ -1796,21 +1806,21 @@ input, select, textarea {
 		  .red-pill {
 			color: red;
 		}
-		  
+
 		  /* text animation */
-		  
+
 		  @keyframes animated-text{
 			from{width: 0;}
 			to{width: 100%;}
 		  }
-		  
+
 		  /* cursor animations */
-		  
+
 		  @keyframes animated-cursor{
 			from{border-right-color: rgba(0,255,0,.75);}
 			to{border-right-color: transparent;}
 		  }
-		  
+
 
 		  @media (max-width: 980px) {
 			#volume-btn {
