@@ -853,15 +853,18 @@ input[type="radio"]+label:before {
 .image.main {
 	display: block;
 	margin: 2.5rem 0;
-	/* margin-bottom: 0px; */
-	width: 100%;
 }
 
-.image.main img {
+.image.main img,
+.image.main video {
 	width: 72%;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+}
+
+.about-me .image.main img {
+	width: 100%;
 }
 
 .button-center {
@@ -1847,10 +1850,6 @@ body.is-preload #footer {
 
 .subtitle {
 	font-size: .7rem;
-	width: 72%;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: left;
 }
 
 .flex-container {
