@@ -192,6 +192,16 @@ textarea {
 	appearance: none;
 }
 
+/* Lightwidget */
+
+@media (max-width: 42rem) {
+	.lightwidget__lightbox--active .lightwidget__lightbox-caption-wrapper {
+		display: block;
+		min-height: 5rem;
+	}
+	
+}
+
 /* Basic */
 
 @-ms-viewport {
