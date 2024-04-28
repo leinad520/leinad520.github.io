@@ -1858,6 +1858,12 @@ body.is-preload #footer {
 			min-height: 100%;
 		} */
 
+.decorative-line {
+	border-top: 0; /* Remove default top border */
+	border-bottom: 1px dashed #ccc; /* Add dashed bottom border */
+	margin: 10px 0; /* Add spacing above and below the line */
+	}
+
 
 #date-container {
 	display: inline-block;
