@@ -1,458 +1,682 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 
 <html>
-
-<head>
-
-	<title>KSY</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-	<meta property="og:image" content="https://ksydaniel.com/images/thumbnail_proper.png" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Hi. I'm Daniel Sangyoon Kim" />
-	<meta property="og:description" content="Step inside the matrix." />
-	<!-- For heavier japanese matrix background: -->
-	<!-- <video autoplay muted loop id="myVideo">
+  <head>
+    <title>KSY</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <noscript>
+      <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <meta
+      property="og:image"
+      content="https://ksydaniel.com/images/thumbnail_proper.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hi. I'm Daniel Sangyoon Kim" />
+    <meta property="og:description" content="Step inside the matrix." />
+    <!-- For heavier japanese matrix background: -->
+    <!-- <video autoplay muted loop id="myVideo">
 			<source src="./assets/japanese-matrix.mp4" type="video/mp4">
 		</video> -->
+  </head>
+  <audio id="player" loop src="./assets/Kryptic Minds - Code 46.mp3"></audio>
 
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <ul id="social-media" class="icons">
+          <li>
+            <a
+              href="https://dksangyoon.substack.com/"
+              class="icon brands custom-icon"
+              target="_blank"
+            >
+              <img src="images/substack-custom.svg" alt="Substack" />
+              <span class="label">Substack</span></a
+            >
+          </li>
+          <!-- <li>
+            <a
+              href="https://dksangyoon.medium.com/"
+              class="icon brands fa-medium"
+              target="_blank"
+              ><span class="label">Medium</span></a
+            >
+          </li> -->
+          <li>
+            <a
+              href="https://twitter.com/dkSangyoon"
+              class="icon brands fa-twitter"
+              target="_blank"
+              ><span class="label">Twitter</span></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/ksydaniel/"
+              class="icon brands fa-linkedin"
+              target="_blank"
+              ><span class="label">Linkedin</span></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/leinad520"
+              class="icon brands fa-github"
+              target="_blank"
+              ><span class="label">GitHub</span></a
+            >
+          </li>
+        </ul>
+        <div style="margin: 0" class="logo">
+          <i
+            id="volume-btn"
+            class="fas fa-capsules blue-pill"
+            onclick="toggleFunc(this)"
+          >
+            <!-- fa-volume-mute -->
+            <p id="click">
+              CLICK
+              <i
+                id="volume-icon"
+                style="font-size: 13px"
+                class="fas fa-volume-mute"
+              ></i>
+            </p>
+          </i>
+        </div>
 
-</head>
-<audio id='player' loop src="./assets/Kryptic Minds - Code 46.mp3"></audio>
+        <div class="content">
+          <div class="inner">
+            <h1 style="font-family: 'matrixregular">Sangyoon</h1>
+            <div class="hello-container">
+              <p class="typewriter hello-text">
+                You take the blue pill - the story ends.
+              </p>
+            </div>
+            <div class="hello-container-2">
+              <p class="typewriter-2 hello-text">
+                You take the red pill, and I show you how deep the rabbit-hole
+                goes.
+              </p>
+            </div>
+            <div class="hello-container-3">
+              <p class="typewriter-3 hello-text">Blue pill or red pill?</p>
+            </div>
+          </div>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="#about-me">About Me</a></li>
+            <li><a href="#life">Life</a></li>
+            <li><a href="#investments">Investments</a></li>
+            <li><a href="#code">Code</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <!-- <li><a href="#elements">Elements</a></li> -->
+          </ul>
+        </nav>
+      </header>
 
-<body class="is-preload">
+      <!-- Main -->
+      <div id="main">
+        <!-- About Me -->
+        <article id="about-me">
+          <h2 class="major">About Me</h2>
+          <div class="about-me">
+            <!-- <span class="image main about-me" style="margin-bottom: 0px"
+              ><img src="images/webp/Singapore.webp" alt=""
+            /></span>
+            <p class="subtitle">Singapore, where I lived during high school.</p> -->
+            <p>
+              Hello, I’m Daniel. Some call me Sangyoon. I was born in the U.S.,
+              but spent most of my life in South Korea and Singapore, before
+              returning stateside for college and work.
+            </p>
+            <p>
+              After a brief stint in Wall Street, I moved to the Bay Area and
+              did a startup where I 1)
+              <a
+                href="https://medium.com/hackernoon/how-i-made-15-000-day-as-a-fresh-college-grad-74a87a80c253"
+                target="_blank"
+                >arbitraged inefficient markets in crypto</a
+              >
+              and 2) made a crypto wiki to help educate people on the hundreds
+              of confusing coins and technical jargon out there.
+            </p>
+            <p>
+              While building this, I realized that I needed to become a better
+              programmer, and leverage my experience for greater impact on the
+              space. So I went back to work at a venture firm to invest in early
+              stage projects, while continuing to code on nights and weekends. I
+              then founded a
+              <a
+                href="https://dksangyoon.medium.com/leaving-vc-coding-bootcamp-startup-55d94fb710ff"
+                target="_blank"
+                >startup</a
+              >, this time as a full-time programmer, where after many pivots,
+              we built a multi-signature crypto wallet (self-custodying your
+              crypto through multiple devices). Having personally lost bitcoin
+              to institutions that crashed in 2022, I felt a strong pull to
+              create a product that could help people safeguard their assets in
+              a self-sovereign way, as crypto was intended.
+            </p>
+            <span class="image main" style="margin-bottom: 0px"
+              ><img src="images/tim-dan.jpeg" alt=""
+            /></span>
+            <p class="subtitle">Good old days learning from Tim</p>
+            <p>
+              Personally, I try to play a few minutes of piano every day, and
+              enjoy tennis and golf.
+            </p>
+          </div>
+        </article>
 
+        <!-- Work -->
+        <article id="code">
+          <h2 class="major">Code</h2>
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+          <span class="image main"><img src="images/Nest.png" alt="" /></span>
+          <h3>Nest Wallet</h3>
+          <p>
+            A multi-signature crypto wallet built on the Safe protocol that can
+            connect to any dapp, like Metamask. It could also function as an
+            individual wallet that is secured through multiple devices (mobile,
+            browser extension, ledger). I hoped to build an institutional grade
+            product that could help large organizations to self custody, as
+            there was already $100 billion of assets stored on the Safe multisig
+            protocol that we could target. My co-founders wanted to turn it into
+            a self custody trading app, so I chose to be an advisor and pursue
+            other opportunities. It was an interesting two years learning
+            building a venture-backed startup with lots of lessons learned.
+          </p>
+          <div class="flex-container">
+            <a class="btn" href="nestwallet.xyz" target="_blank"
+              ><button class="container">Nest Wallet</button></a
+            >
+          </div>
 
-		<!-- Header -->
-		<header id="header">
-			<ul id="social-media" class="icons">
-				<li><a href="https://dksangyoon.substack.com/" class="icon brands custom-icon" target="_blank">
-						<img src="images/substack-custom.svg" alt="Substack">
-						<span class="label">Substack</span></a></li>
-				<li><a href="https://dksangyoon.medium.com/" class="icon brands fa-medium" target="_blank"><span
-							class="label">Medium</span></a></li>
-				<li><a href="https://twitter.com/dkSangyoon" class="icon brands fa-twitter" target="_blank"><span
-							class="label">Twitter</span></a></li>
-				<li><a href="https://www.linkedin.com/in/ksydaniel/" class="icon brands fa-linkedin" target="_blank"><span
-							class="label">Linkedin</span></a></li>
-				<li><a href="https://github.com/leinad520" class="icon brands fa-github" target="_blank"><span
-							class="label">GitHub</span></a></li>
-			</ul>
-			<div style="margin: 0" class="logo">
-				<i id="volume-btn" class="fas fa-capsules blue-pill" onclick="toggleFunc(this)">
-					<!-- fa-volume-mute -->
-					<p id="click">CLICK
-						<i id="volume-icon" style="font-size: 13px" class="fas fa-volume-mute"></i>
-					</p>
-				</i>
+          <br /><br />
 
-			</div>
+          <!-- <span class="image main"><img src="images/CryptoPanda.mp4" alt="" /></span> -->
+          <div class="image main">
+            <video controls>
+              <source src="images/CryptoPanda.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <h3>CryptoPanda</h3>
+          <p>
+            <strong>Task:</strong> A cryptocurrency price tracker built for my
+            2-day MVP project in Hack Reactor. Built using Coingecko's API.
+            <br />
+            <br />
+            <strong>Build:</strong> React, PostgreSQL, Node.js, Express. <br />
+            <br />
+            Note that "Comments" section does not work because github-pages (how
+            this is deployed) does not allow hosting of database.
+          </p>
+          <div class="flex-container">
+            <a
+              class="btn"
+              href="http://ksydaniel.com/CryptoPanda/"
+              target="_blank"
+              ><button class="container">View</button></a
+            >
+          </div>
 
-			<div class="content">
-				<div class="inner">
-					<h1 style="font-family: 'matrixregular">Sangyoon</h1>
-					<div class="hello-container">
-						<p class="typewriter hello-text">You take the blue pill - the story ends.</p>
-					</div>
-					<div class="hello-container-2">
-						<p class="typewriter-2 hello-text">You take the red pill, and I show you how deep the rabbit-hole goes.</p>
-					</div>
-					<div class="hello-container-3">
-						<p class="typewriter-3 hello-text">Blue pill or red pill?</p>
-					</div>
-				</div>
-			</div>
-			<nav>
-				<ul>
-					<li><a href="#about-me">About Me</a></li>
-					<li><a href="#life">Life</a></li>
-					<li><a href="#investments">Investments</a></li>
-					<li><a href="#code">Code</a></li>
-					<li><a href="#contact">Contact</a></li>
-					<!-- <li><a href="#elements">Elements</a></li> -->
-				</ul>
-			</nav>
-		</header>
+          <br /><br />
 
-		<!-- Main -->
-		<div id="main">
+          <span class="image main"
+            ><img src="images/webp/architecture.webp" alt=""
+          /></span>
+          <h3>Backend System Design</h3>
+          <p>
+            <strong>Task:</strong> Built a backend API that could scale to web
+            server level. Achieved 3000 requests / second and sub 50ms latency.
+            <br /><br />
+            <strong>Learnings:</strong> Using secondary indexes to optimize
+            table lookup speeds from O(N) to O(logN), horizontally scaling
+            servers with a load balancer and using a ELT process to load
+            millions of lines of csv data into my table schema. Limitations were
+            having to use free-tier t2 micro instances on AWS. <br /><br />
+            The trickiest part was deploying, since there are so many finnicky
+            parts in dev ops.
+            <br />
+            <br />
+            <strong>Build:</strong> NGINX, AWS EC2, PostgreSQL, loader.io
+            (deployed testing) and k6 (local testing).
+          </p>
+          <div class="flex-container">
+            <a
+              class="btn"
+              href="https://github.com/Team-Luxray/related_products_api"
+              target="_blank"
+              ><button class="container">Github repo</button></a
+            >
+          </div>
 
-			<!-- About Me -->
-			<article id="about-me">
-				<h2 class="major">About Me</h2>
-				<div class="about-me">
-					<span class="image main about-me" style="margin-bottom: 0px"><img src="images/webp/Singapore.webp"
-							alt="" /></span>
-					<p class="subtitle">Singapore, where I lived during high school.</p>
-					<p>Hello, I’m Daniel. Some call me Sangyoon. I was born in the States, but spent most of my life in South
-						Korea
-						and Singapore. I came back to the U.S. for college where I graduated from NYU Stern with a BS in finance.
-					</p>
-					<p>After interning at a couple of investment funds in college, I moved to the bay area and did a startup where
-						I
-						1)
-						<a href="https://medium.com/hackernoon/how-i-made-15-000-day-as-a-fresh-college-grad-74a87a80c253"
-							target="_blank">arbitraged inefficient markets in crypto</a> and 2) made a crypto price-tracker and wiki
-						platform.
-					</p>
-					<p>That startup was both an early foray into the crypto world and a late entry to the the programming world
-						for
-						me.
-						I then went on to do venture and crypto investments for Tim Draper at Draper Associates. I am now working on
-						a
-						new <a href="https://dksangyoon.medium.com/leaving-vc-coding-bootcamp-startup-55d94fb710ff"
-							target="_blank">startup</a>, this time as a
-						full-time programmer.</p>
-					<span class="image main" style="margin-bottom: 0px"><img src="images/tim-dan.jpeg" alt="" /></span>
-					<p class="subtitle">Good old days learning from Tim</p>
-					<p>Personally, I try to play a few minutes of piano every day, and enjoy golf.</p>
-				</div>
-			</article>
+          <br /><br />
 
-			<!-- Work -->
-			<article id="code">
-				<h2 class="major">Code Projects</h2>
+          <!-- <span class="image main"><img src="images/ECOM.gif" alt="" /></span> -->
+          <div class="image main">
+            <video class="image main" controls>
+              <source src="images/ECOM.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <h3>Project ECOM (Front-end)</h3>
+          <p>
+            <strong>Task:</strong> Ecommerce website built following detailed
+            client specs. Built with three other engineers in agile sprint
+            environment. I made the "related products" section. <br /><br />
+            <strong>Learnings:</strong> Using promise.all to make concurrent API
+            calls, using local storage for storing user styles, and more CSS!
+            <br /><br />
+            <strong>Build:</strong> React, Express, Node.js, Amazon EC2.
+          </p>
+          <div class="flex-container">
+            <a
+              class="btn"
+              href="https://github.com/leinad520/P2P"
+              target="_blank"
+              ><button class="container">Github repo</button></a
+            >
+          </div>
 
-				<span class="image main"><img src="images/Nest.png" alt="" /></span>
-				<h3>Nest Wallet</h3>
-				<p>
-					A multi-signature crypto wallet built on the Safe protocol that can connect to any dapp, like Metamask. Also can function as an individual wallet secured through multiple devices (mobile, browser extension, ledger). I felt that we could build an institutional grade product that could help large organizations self custody their crypto rather than rely on third parties which poses risks. However, my co-founders 
-				</p>
-				<div class="flex-container">
-					<a class="btn" href="nestwallet.xyz" target="_blank"><button
-							class="container">Nest Wallet</button></a>
-				</div>
+          <br /><br />
 
-				<br><br>
+          <span class="image main"
+            ><img src="images/webp/battleship.webp" alt=""
+          /></span>
+          <h3>Battleship game</h3>
+          <p>The classic Battleship game. Made with python.</p>
+          <div class="flex-container">
+            <a
+              class="btn"
+              href="https://battleship-game-python.leinad520.repl.run/"
+              target="_blank"
+              ><button class="container">Play</button></a
+            >
+            <a
+              class="btn"
+              href="https://repl.it/@leinad520/Battleship-Game-Python"
+              target="_blank"
+              ><button class="container">See Code</button></a
+            >
+          </div>
 
-				<!-- <span class="image main"><img src="images/CryptoPanda.mp4" alt="" /></span> -->
-				<div class="image main">
-					<video controls>
-						<source src="images/CryptoPanda.mp4" type="video/mp4">
-					</video>
-				</div>
-				<h3>CryptoPanda</h3>
-				<p>
-					<strong>Task:</strong> A cryptocurrency price tracker built for my 2-day MVP project in Hack Reactor. Built
-					using Coingecko's API.
-					<br /> <br />
-					<strong>Build:</strong> React, PostgreSQL, Node.js, Express.
-					<br /> <br />
-					Note that "Comments" section does not work because github-pages (how this is
-					deployed) does not allow hosting of database.
-				</p>
-				<div class="flex-container">
-					<a class="btn" href="http://ksydaniel.com/CryptoPanda/" target="_blank"><button
-							class="container">View</button></a>
-				</div>
+          <br /><br />
 
-				<br><br>
+          <span class="image main"
+            ><img src="images/webp/monty-hall.webp" alt=""
+          /></span>
+          <h3>Monty Hall Brain Teaser</h3>
+          <p>
+            Wrote the
+            <a
+              href="https://medium.com/swlh/monty-hall-f3f3aa766d36"
+              target="_blank"
+              >Monty Hall problem</a
+            >
+            in python. Simulated it 10,000x to show that what seems like a 50/50
+            decision is actually 2/3 in favor of switching doors.
+          </p>
+          <div class="flex-container">
+            <a
+              class="btn"
+              href="https://medium.com/swlh/monty-hall-f3f3aa766d36"
+              target="_blank"
+              ><button class="container">Medium Post</button></a
+            >
+            <a
+              class="btn"
+              href="https://repl.it/@leinad520/Monty-Hall"
+              target="_blank"
+              ><button class="container">See Code</button></a
+            >
+            <a
+              class="btn"
+              href="https://repl.it/@leinad520/Monty-Hall-Simulation-10000x"
+              target="_blank"
+              ><button class="container">Simulate 10,000x</button></a
+            >
+          </div>
 
-				<span class="image main"><img src="images/webp/architecture.webp" alt="" /></span>
-				<h3>Backend System Design</h3>
-				<p>
-					<strong>Task:</strong> Built a backend API that could scale to web server level. Achieved 3000 requests /
-					second and sub 50ms latency.
-					<br /><br />
-					<strong>Learnings:</strong> Using secondary indexes to optimize table lookup speeds from O(N) to O(logN),
-					horizontally scaling servers with a load balancer and using a ELT process to load millions of lines of csv
-					data into my table schema. Limitations were having to use free-tier t2 micro instances on AWS.
-					<br /><br />
-					The trickiest part was deploying, since there are so many finnicky parts in dev ops.
-					<br /> <br />
-					<strong>Build:</strong> NGINX, AWS EC2, PostgreSQL, loader.io (deployed testing) and k6 (local testing).
-				</p>
-				<div class="flex-container">
-					<a class="btn" href="https://github.com/Team-Luxray/related_products_api" target="_blank"><button
-							class="container">Github repo</button></a>
-				</div>
+          <br /><br />
 
-				<br><br>
+          <span class="image main"
+            ><img src="images/webp/nasa-instagram-photo-cropped.webp" alt=""
+          /></span>
+          <h3>NASA Instagram</h3>
+          <p>
+            Display the daily NASA post from their API in Instagram format.
+            Updates every day to new post automatically. Made with React.
+          </p>
+          <div class="flex-container">
+            <a
+              class="btn"
+              href="https://ksydaniel.com/nasa-photo-of-the-day/"
+              target="_blank"
+              ><button class="container">View</button></a
+            >
+          </div>
 
-				<!-- <span class="image main"><img src="images/ECOM.gif" alt="" /></span> -->
-				<div class="image main">
-					<video class="image main" controls>
-						<source src="images/ECOM.mp4" type="video/mp4">
-					</video>
-				</div>
-				<h3>Project ECOM (Front-end)</h3>
-				<p>
-					<strong>Task:</strong> Ecommerce website built following detailed client specs. Built with three other
-					engineers in agile sprint environment. I made the "related products" section.
-					<br /><br />
-					<strong>Learnings:</strong> Using promise.all to make concurrent API calls, using local storage for storing
-					user styles, and more CSS!
-					<br /><br />
-					<strong>Build:</strong> React, Express, Node.js, Amazon EC2.
-				</p>
-				<div class="flex-container">
-					<a class="btn" href="https://github.com/leinad520/P2P" target="_blank"><button class="container">Github
-							repo</button></a>
-				</div>
+          <span class="image main"
+            ><img src="images/webp/TripSplit.webp" alt=""
+          /></span>
+          <h3>TripSplit App</h3>
+          <p>
+            Made front-end site for project. Made with HTML, CSS and media
+            queries to be fully responsive on desktop, tablet, and mobile.
+          </p>
+          <div class="flex-container">
+            <a
+              class="btn"
+              href="https://tender-thompson-0c54ed.netlify.app/"
+              target="_blank"
+              ><button class="container">View</button></a
+            >
+          </div>
 
-				<br><br>
+          <br /><br />
+        </article>
 
-				<span class="image main"><img src="images/webp/battleship.webp" alt="" /></span>
-				<h3>Battleship game</h3>
-				<p>The classic Battleship game. Made with python.</p>
-				<div class="flex-container">
-					<a class="btn" href="https://battleship-game-python.leinad520.repl.run/" target="_blank"><button
-							class="container">Play</button></a>
-					<a class="btn" href="https://repl.it/@leinad520/Battleship-Game-Python" target="_blank"><button
-							class="container">See Code</button></a>
-				</div>
+        <!-- Investment Analyses -->
+        <article id="investments">
+          <h2 class="major">Investments</h2>
+          <h3>🚨 UPDATE:</h3>
+          <p>
+            From 01/2023, I will no longer post here & Medium, and instead post
+            on Substack. Subscribe at
+            <a href="dksangyoon.substack.com">dksangyoon.substack.com</a> for
+            rare investment insights directly to your inbox!
+          </p>
+          <span class="image main"
+            ><img src="images/mt-gox.jpeg" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">01/2023</p>
+          </div>
+          <h3>Arbitraging Mt. Gox Bitcoin Claims</h3>
+          <p style="font-style: italic">
+            Assessing a special situations opportunity in crypto.
+          </p>
+          <a
+            href="https://dksangyoon.substack.com/p/assessing-two-arbitrage-investments"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
 
-				<br><br>
+          <span class="image main"
+            ><img src="images/webp/bsc.webp" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">07/2021</p>
+          </div>
+          <h3>
+            How To Intelligently Invest in Crypto as a Retail Investor (from a
+            VC)
+          </h3>
+          <p style="font-style: italic">
+            I go over two big wins and try to illuminate the process behind
+            finding winners early.
+          </p>
+          <a
+            href="https://dksangyoon.medium.com/how-to-intelligently-invest-in-crypto-as-a-retail-investor-from-a-vc-6081249b18d7"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
 
-				<span class="image main"><img src="images/webp/monty-hall.webp" alt="" /></span>
-				<h3>Monty Hall Brain Teaser</h3>
-				<p>Wrote the <a href="https://medium.com/swlh/monty-hall-f3f3aa766d36" target="_blank">Monty Hall problem</a> in
-					python. Simulated it 10,000x to show that what seems like a 50/50 decision is actually 2/3 in favor of
-					switching doors.</p>
-				<div class="flex-container">
-					<a class="btn" href="https://medium.com/swlh/monty-hall-f3f3aa766d36" target="_blank"><button
-							class="container">Medium Post</button></a>
-					<a class="btn" href="https://repl.it/@leinad520/Monty-Hall" target="_blank"><button class="container">See
-							Code</button></a>
-					<a class="btn" href="https://repl.it/@leinad520/Monty-Hall-Simulation-10000x" target="_blank"><button
-							class="container">Simulate 10,000x</button></a>
-				</div>
+          <span class="image main"
+            ><img src="images/2020 Investments Reflection.jpeg" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">02/2021</p>
+          </div>
+          <h3>
+            Reflection On My 2020 Investments - Bitcoin, Baidu, Cross-Harbour
+            Holdings, and Cinemark
+          </h3>
+          <p style="font-style: italic">
+            This is a recap of my largest concentrated positions in my personal
+            portfolio, and how they have performed.
+          </p>
+          <a
+            href="https://medium.datadriveninvestor.com/reflection-on-my-2020-investments-bitcoin-baidu-cross-harbour-holdings-and-cinemark-fa3e8a1fc1ee"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
 
-				<br><br>
+          <span class="image main"
+            ><img src="images/webp/Uniswap.webp" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">02/2021</p>
+          </div>
+          <h3>Fundamentally Valuing Uniswap</h3>
+          <p style="font-style: italic">
+            Valuing the top decentralized exchange.
+          </p>
+          <a
+            href="https://medium.datadriveninvestor.com/fundamentally-valuing-uniswap-3dbe991bd398"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
 
-				<span class="image main"><img src="images/webp/nasa-instagram-photo-cropped.webp" alt="" /></span>
-				<h3>NASA Instagram</h3>
-				<p>Display the daily NASA post from their API in Instagram format. Updates every day to new post automatically.
-					Made with React.</p>
-				<div class="flex-container">
-					<a class="btn" href="https://ksydaniel.com/nasa-photo-of-the-day/" target="_blank"><button
-							class="container">View</button></a>
-				</div>
+          <span class="image main"
+            ><img src="images/webp/Maker-DAO.webp" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">10/2020</p>
+          </div>
+          <h3>Fundamentally Valuing Maker DAO</h3>
+          <p style="font-style: italic">Valuing the iconic stablecoin.</p>
+          <a
+            href="https://medium.datadriveninvestor.com/maker-dao-investment-and-valuation-3f34a236b723"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
 
-				<span class="image main"><img src="images/webp/TripSplit.webp" alt="" /></span>
-				<h3>TripSplit App</h3>
-				<p>Made front-end site for project. Made with HTML, CSS and media queries to be fully responsive on desktop,
-					tablet, and mobile.</p>
-				<div class="flex-container">
-					<a class="btn" href="https://tender-thompson-0c54ed.netlify.app/" target="_blank"><button
-							class="container">View</button></a>
-				</div>
+          <span class="image main"
+            ><img src="images/webp/chh.webp" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">09/2019</p>
+          </div>
+          <h3>
+            A Stock Trading Below Net Cash Balance — Cross-Harbour Holdings
+            (0032: HK)
+          </h3>
+          <p style="font-style: italic">
+            Extremely undervalued sum-of-the-parts play with a large margin of
+            safety, trading below net cash & investments.
+          </p>
+          <a
+            href="https://medium.com/@danielsangyoonkim/cross-harbour-holdings-b88f75af0b88"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
 
-				<br><br>
+          <span class="image main"
+            ><img src="images/webp/ddg.webp" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">07/2019</p>
+          </div>
+          <h3>Valuing the Next Billion Dollar Search Engine - DuckDuckGo</h3>
+          <p style="font-style: italic">
+            How DuckDuckGo has room to grow into a $1B+ valuation despite
+            Google.
+          </p>
+          <a
+            href="https://medium.com/hackernoon/valuing-the-next-billion-dollar-search-engine-duckduckgo-d4a3cfa51ac5"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
 
-			</article>
+          <span class="image main"
+            ><img src="images/webp/bitcoin.webp" alt=""
+          /></span>
+          <div id="date-container">
+            <p id="date">06/2019</p>
+          </div>
+          <h3>Fundamentally Valuing Bitcoin at $75,000 / BTC</h3>
+          <p style="font-style: italic">
+            A framework to value BTC for the fundamental investor.
+          </p>
+          <a
+            href="https://medium.com/hackernoon/fundamentally-valuing-bitcoin-at-45-000-btc-a7f171521ae6"
+            target="_blank"
+            ><button class="button-center">Read</button></a
+          >
+        </article>
 
-			<!-- Investment Analyses -->
-			<article id="investments">
-				<h2 class="major">Investments</h2>
-				<h3>🚨 UPDATE:</h3>
-				<p>From 01/2023, I will no longer post here, and instead post on Substack. Subscribe at <a href="dksangyoon.substack.com">dksangyoon.substack.com</a> for rare investment insights directly to your inbox!</p>
-				<span class="image main"><img src="images/mt-gox.jpeg" alt="" /></span>
-				<div id="date-container">
-					<p id="date">01/2023</p>
-				</div>
-				<h3>Arbitraging Mt. Gox Bitcoin Claims</h3>
-				<p style="font-style: italic">Assessing a special situations opportunity in crypto.</p>
-				<a href="https://dksangyoon.substack.com/p/assessing-two-arbitrage-investments" target="_blank"><button
-						class="button-center">Read</button></a>
+        <!-- Life -->
+        <article id="life">
+          <h3 class="major">Piano</h3>
+          <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/ABNRVQGnfvQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <a href="https://www.youtube.com/embed/ABNRVQGnfvQ"
+            >Interstellar OST in hotel at NYC.</a
+          >
+          <br />Recorded in 2021.
 
-				<span class="image main"><img src="images/webp/bsc.webp" alt="" /></span>
-				<div id="date-container">
-					<p id="date">07/2021</p>
-				</div>
-				<h3>How To Intelligently Invest in Crypto as a Retail Investor (from a VC)</h3>
-				<p style="font-style: italic">I go over two big wins and try to illuminate the process behind finding winners early.</p>
-				<a href="https://dksangyoon.medium.com/how-to-intelligently-invest-in-crypto-as-a-retail-investor-from-a-vc-6081249b18d7"
-					target="_blank"><button class="button-center">Read</button></a>
+          <br /><br />
 
-				<span class="image main"><img src="images/2020 Investments Reflection.jpeg" alt="" /></span>
-				<div id="date-container">
-					<p id="date">02/2021</p>
-				</div>
-				<h3>Reflection On My 2020 Investments - Bitcoin, Baidu, Cross-Harbour Holdings, and Cinemark</h3>
-				<p style="font-style: italic">This is a recap of my largest concentrated positions in my personal portfolio, and
-					how they have performed.</p>
-				<a href="https://medium.datadriveninvestor.com/reflection-on-my-2020-investments-bitcoin-baidu-cross-harbour-holdings-and-cinemark-fa3e8a1fc1ee"
-					target="_blank"><button class="button-center">Read</button></a>
+          <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/-Nb4ot3OY08" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <a href="https://www.youtube.com/embed/-Nb4ot3OY08"
+            >Howl's Moving Castle, Chopin style. On a public piano in South
+            Korea.</a
+          >
+          <br />Recorded in 2021.
 
-				<span class="image main"><img src="images/webp/Uniswap.webp" alt="" /></span>
-				<div id="date-container">
-					<p id="date">02/2021</p>
-				</div>
-				<h3>Fundamentally Valuing Uniswap</h3>
-				<p style="font-style: italic">Valuing the top decentralized exchange.</p>
-				<a href="https://medium.datadriveninvestor.com/fundamentally-valuing-uniswap-3dbe991bd398"
-					target="_blank"><button class="button-center">Read</button></a>
+          <br /><br />
 
-				<span class="image main"><img src="images/webp/Maker-DAO.webp" alt="" /></span>
-				<div id="date-container">
-					<p id="date">10/2020</p>
-				</div>
-				<h3>Fundamentally Valuing Maker DAO</h3>
-				<p style="font-style: italic">Valuing the iconic stablecoin.</p>
-				<a href="https://medium.datadriveninvestor.com/maker-dao-investment-and-valuation-3f34a236b723"
-					target="_blank"><button class="button-center">Read</button></a>
+          <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/xH9uzmaVfNw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <a href="https://www.youtube.com/embed/xH9uzmaVfNw"
+            >Practicing Howl's Moving Castle theme, Kyle Landry version.</a
+          >
+          <br />Recorded in 2018.
 
-				<span class="image main"><img src="images/webp/chh.webp" alt="" /></span>
-				<div id="date-container">
-					<p id="date">09/2019</p>
-				</div>
-				<h3>A Stock Trading Below Net Cash Balance — Cross-Harbour Holdings (0032: HK)</h3>
-				<p style="font-style: italic">Extremely undervalued sum-of-the-parts play with a large margin of safety, trading
-					below net cash & investments.</p>
-				<a href="https://medium.com/@danielsangyoonkim/cross-harbour-holdings-b88f75af0b88" target="_blank"><button
-						class="button-center">Read</button></a>
+          <br /><br />
 
-				<span class="image main"><img src="images/webp/ddg.webp" alt="" /></span>
-				<div id="date-container">
-					<p id="date">07/2019</p>
-				</div>
-				<h3>Valuing the Next Billion Dollar Search Engine - DuckDuckGo</h3>
-				<p style="font-style: italic">How DuckDuckGo has room to grow into a $1B+ valuation despite Google.</p>
-				<a href="https://medium.com/hackernoon/valuing-the-next-billion-dollar-search-engine-duckduckgo-d4a3cfa51ac5"
-					target="_blank"><button class="button-center">Read</button></a>
+          <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/01Alk652TOg?start=4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <a href="https://www.youtube.com/embed/01Alk652TOg?start=4"
+            >Practicing my favorite classical piece, Fantasie Impromptu.</a
+          >
+          <br />Recorded in 2016.
 
-				<span class="image main"><img src="images/webp/bitcoin.webp" alt="" /></span>
-				<div id="date-container">
-					<p id="date">06/2019</p>
-				</div>
-				<h3>Fundamentally Valuing Bitcoin at $75,000 / BTC</h3>
-				<p style="font-style: italic">A framework to value BTC for the fundamental investor.</p>
-				<a href="https://medium.com/hackernoon/fundamentally-valuing-bitcoin-at-45-000-btc-a7f171521ae6"
-					target="_blank"><button class="button-center">Read</button></a>
+          <br /><br />
 
-			</article>
+          <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/UHpBhA143pA?start=27" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+          <a href="https://www.youtube.com/embed/UHpBhA143pA?start=27"
+            >The song from Jay Chou's Secret that inspired me to start learning
+            the piano.</a
+          >
+          <br />Recorded in 2013.
 
-			<!-- Life -->
-			<article id="life">
+          <br /><br />
 
-				<h3 class="major">Piano</h3>
-				<!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/ABNRVQGnfvQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-				<a href="https://www.youtube.com/embed/ABNRVQGnfvQ">Interstellar OST in hotel at NYC.</a> <br>Recorded in 2021.
+          <!-- LightWidget WIDGET -->
+          <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+          <iframe
+            src="https://cdn.lightwidget.com/widgets/e7813979febb5a86891f91f345439bda.html"
+            scrolling="no"
+            allowtransparency="true"
+            class="lightwidget-widget"
+            style="width: 100%; border: 0; overflow: hidden"
+          ></iframe>
+        </article>
 
-				<br><br>
-
-
-				<!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/-Nb4ot3OY08" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-				<a href="https://www.youtube.com/embed/-Nb4ot3OY08">Howl's Moving Castle, Chopin style. On a public piano in
-					South Korea.</a> <br>Recorded in 2021.
-
-				<br><br>
-
-
-				<!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/xH9uzmaVfNw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-				<a href="https://www.youtube.com/embed/xH9uzmaVfNw">Practicing Howl's Moving Castle theme, Kyle Landry
-					version.</a> <br>Recorded in 2018.
-
-				<br><br>
-
-				<!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/01Alk652TOg?start=4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-				<a href="https://www.youtube.com/embed/01Alk652TOg?start=4">Practicing my favorite classical piece, Fantasie
-					Impromptu.</a> <br>Recorded in 2016.
-
-				<br><br>
-
-				<!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/UHpBhA143pA?start=27" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-				<a href="https://www.youtube.com/embed/UHpBhA143pA?start=27">The song from Jay Chou's Secret that inspired me to
-					start learning the piano.</a> <br>Recorded in 2013.
-
-				<br><br>
-
-				<!-- LightWidget WIDGET -->
-				<script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe
-					src="https://cdn.lightwidget.com/widgets/e7813979febb5a86891f91f345439bda.html" scrolling="no"
-					allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
-
-			</article>
-
-
-
-			<!-- Contact -->
-			<article id="contact">
-				<h2 class="major">Contact</h2>
-				<!-- <p>I'm trying out a new interaction tool called Premium.chat. It gives me an incentive to speak with more people outside of my network. Contact me by chat or video call.</p> -->
-				<!-- BEGIN PREMIUM.CHAT CODE {literal} -->
-				<!-- <div class="pchat-widget-placeholder"></div><script type='text/javascript'>(function(d,w,i){w.premiumchat = w.premiumchat || [];var p = w.premiumchat; if(!p.length){function l(){
+        <!-- Contact -->
+        <article id="contact">
+          <h2 class="major">Contact</h2>
+          <!-- <p>I'm trying out a new interaction tool called Premium.chat. It gives me an incentive to speak with more people outside of my network. Contact me by chat or video call.</p> -->
+          <!-- BEGIN PREMIUM.CHAT CODE {literal} -->
+          <!-- <div class="pchat-widget-placeholder"></div><script type='text/javascript'>(function(d,w,i){w.premiumchat = w.premiumchat || [];var p = w.premiumchat; if(!p.length){function l(){
 									w.premiumchat_domain = 'https://premium.chat/';var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = w.premiumchat_domain+'embed/js/widget.js'; var ss = d.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}
 									if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}}
 									p.push({'num': p.length, 'wid': i});})(document, window,5511);</script> -->
-				<!-- {/literal} END PREMIUM.CHAT CODE -->
+          <!-- {/literal} END PREMIUM.CHAT CODE -->
 
-				<br><br>
+          <br /><br />
 
-				<!-- BEGIN PREMIUM.CHAT CODE {literal} -->
-				<!-- <div class="pchat-widget-placeholder"></div><script type='text/javascript'>(function(d,w,i){w.premiumchat = w.premiumchat || [];var p = w.premiumchat; if(!p.length){function l(){
+          <!-- BEGIN PREMIUM.CHAT CODE {literal} -->
+          <!-- <div class="pchat-widget-placeholder"></div><script type='text/javascript'>(function(d,w,i){w.premiumchat = w.premiumchat || [];var p = w.premiumchat; if(!p.length){function l(){
 									w.premiumchat_domain = 'https://premium.chat/';var s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = w.premiumchat_domain+'embed/js/widget.js'; var ss = d.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}
 									if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}}
 									p.push({'num': p.length, 'wid': i});})(document, window,4977);</script> -->
-				<!-- {/literal} END PREMIUM.CHAT CODE -->
+          <!-- {/literal} END PREMIUM.CHAT CODE -->
 
-				<br><br>
+          <br /><br />
 
-				<form method="post" action="https://formspree.io/ksydaniel@gmail.com">
-					<div class="fields">
-						<div class="field half">
-							<label for="name">Name</label>
-							<input type="text" name="name" id="name" />
-						</div>
-						<div class="field half">
-							<label for="email">Email</label>
-							<input type="text" name="email" id="email" />
-						</div>
-						<div class="field">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" rows="4"></textarea>
-						</div>
-					</div>
-					<ul class="actions">
-						<li><input type="submit" value="Send Message" class="primary" /></li>
-						<li><input type="reset" value="Reset" /></li>
-					</ul>
-				</form>
+          <form method="post" action="https://formspree.io/ksydaniel@gmail.com">
+            <div class="fields">
+              <div class="field half">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" />
+              </div>
+              <div class="field half">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" />
+              </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea name="message" id="message" rows="4"></textarea>
+              </div>
+            </div>
+            <ul class="actions">
+              <li>
+                <input type="submit" value="Send Message" class="primary" />
+              </li>
+              <li><input type="reset" value="Reset" /></li>
+            </ul>
+          </form>
 
-
-				<!-- <ul class="icons">
+          <!-- <ul class="icons">
 									<li><a href="https://www.linkedin.com/in/dksangyoon/" class="icon brands fa-linkedin" target="_blank"><span class="label">Linkedin</span></a></li>
 									<li><a href="https://medium.com/@danielsangyoonkim" class="icon brands fa-medium" target="_blank"><span class="label">Medium</span></a></li>
 									<li><a href="https://twitter.com/Ksydaniel" class="icon brands fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
 									<li><a href="https://github.com/leinad520" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
 								</ul> -->
-			</article>
+        </article>
 
-			<!-- Elements -->
-			<article id="elements">
-				<h2 class="major">Elements</h2>
+        <!-- Elements -->
+        <article id="elements">
+          <h2 class="major">Elements</h2>
 
-				<section>
-					<h3 class="major">Text</h3>
-					<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is
-						<em>emphasized</em>.
-						This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-						This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a
-							link</a>.
-					</p>
-					<hr />
-					<h2>Heading Level 2</h2>
-					<h3>Heading Level 3</h3>
-					<h4>Heading Level 4</h4>
-					<h5>Heading Level 5</h5>
-					<h6>Heading Level 6</h6>
-					<hr />
-					<h4>Blockquote</h4>
-					<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod.
-						Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac
-						adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam
-						adipiscing eu felis.</blockquote>
-					<h4>Preformatted</h4>
-					<pre><code>i = 0;
+          <section>
+            <h3 class="major">Text</h3>
+            <p>
+              This is <b>bold</b> and this is <strong>strong</strong>. This is
+              <i>italic</i> and this is <em>emphasized</em>. This is
+              <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+              This is <u>underlined</u> and this is code:
+              <code>for (;;) { ... }</code>. Finally,
+              <a href="#">this is a link</a>.
+            </p>
+            <hr />
+            <h2>Heading Level 2</h2>
+            <h3>Heading Level 3</h3>
+            <h4>Heading Level 4</h4>
+            <h5>Heading Level 5</h5>
+            <h6>Heading Level 6</h6>
+            <hr />
+            <h4>Blockquote</h4>
+            <blockquote>
+              Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis
+              sagittis eget tempus euismod. Vestibulum ante ipsum primis in
+              faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat
+              ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in
+              faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.
+            </blockquote>
+            <h4>Preformatted</h4>
+            <pre><code>i = 0;
 
 while (!deck.isInOrder()) {
     print 'Iteration ' + i;
@@ -461,241 +685,294 @@ while (!deck.isInOrder()) {
 }
 
 print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-				</section>
+          </section>
 
-				<section>
-					<h3 class="major">Lists</h3>
+          <section>
+            <h3 class="major">Lists</h3>
 
-					<h4>Unordered</h4>
-					<ul>
-						<li>Dolor pulvinar etiam.</li>
-						<li>Sagittis adipiscing.</li>
-						<li>Felis enim feugiat.</li>
-					</ul>
+            <h4>Unordered</h4>
+            <ul>
+              <li>Dolor pulvinar etiam.</li>
+              <li>Sagittis adipiscing.</li>
+              <li>Felis enim feugiat.</li>
+            </ul>
 
-					<h4>Alternate</h4>
-					<ul class="alt">
-						<li>Dolor pulvinar etiam.</li>
-						<li>Sagittis adipiscing.</li>
-						<li>Felis enim feugiat.</li>
-					</ul>
+            <h4>Alternate</h4>
+            <ul class="alt">
+              <li>Dolor pulvinar etiam.</li>
+              <li>Sagittis adipiscing.</li>
+              <li>Felis enim feugiat.</li>
+            </ul>
 
-					<h4>Ordered</h4>
-					<ol>
-						<li>Dolor pulvinar etiam.</li>
-						<li>Etiam vel felis viverra.</li>
-						<li>Felis enim feugiat.</li>
-						<li>Dolor pulvinar etiam.</li>
-						<li>Etiam vel felis lorem.</li>
-						<li>Felis enim et feugiat.</li>
-					</ol>
-					<h4>Icons</h4>
-					<ul class="icons">
-						<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-					</ul>
+            <h4>Ordered</h4>
+            <ol>
+              <li>Dolor pulvinar etiam.</li>
+              <li>Etiam vel felis viverra.</li>
+              <li>Felis enim feugiat.</li>
+              <li>Dolor pulvinar etiam.</li>
+              <li>Etiam vel felis lorem.</li>
+              <li>Felis enim et feugiat.</li>
+            </ol>
+            <h4>Icons</h4>
+            <ul class="icons">
+              <li>
+                <a href="#" class="icon brands fa-twitter"
+                  ><span class="label">Twitter</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands fa-facebook-f"
+                  ><span class="label">Facebook</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands fa-instagram"
+                  ><span class="label">Instagram</span></a
+                >
+              </li>
+              <li>
+                <a href="#" class="icon brands fa-github"
+                  ><span class="label">Github</span></a
+                >
+              </li>
+            </ul>
 
-					<h4>Actions</h4>
-					<ul class="actions">
-						<li><a href="#" class="button primary">Default</a></li>
-						<li><a href="#" class="button">Default</a></li>
-					</ul>
-					<ul class="actions stacked">
-						<li><a href="#" class="button primary">Default</a></li>
-						<li><a href="#" class="button">Default</a></li>
-					</ul>
-				</section>
+            <h4>Actions</h4>
+            <ul class="actions">
+              <li><a href="#" class="button primary">Default</a></li>
+              <li><a href="#" class="button">Default</a></li>
+            </ul>
+            <ul class="actions stacked">
+              <li><a href="#" class="button primary">Default</a></li>
+              <li><a href="#" class="button">Default</a></li>
+            </ul>
+          </section>
 
-				<section>
-					<h3 class="major">Table</h3>
-					<h4>Default</h4>
-					<div class="table-wrapper">
-						<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Item One</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Two</td>
-									<td>Vis ac commodo adipiscing arcu aliquet.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Three</td>
-									<td> Morbi faucibus arcu accumsan lorem.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Four</td>
-									<td>Vitae integer tempus condimentum.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Five</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
+          <section>
+            <h3 class="major">Table</h3>
+            <h4>Default</h4>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Item One</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Two</td>
+                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                    <td>19.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Three</td>
+                    <td>Morbi faucibus arcu accumsan lorem.</td>
+                    <td>29.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Four</td>
+                    <td>Vitae integer tempus condimentum.</td>
+                    <td>19.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Five</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td>100.00</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
 
-					<h4>Alternate</h4>
-					<div class="table-wrapper">
-						<table class="alt">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Description</th>
-									<th>Price</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Item One</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Two</td>
-									<td>Vis ac commodo adipiscing arcu aliquet.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Three</td>
-									<td> Morbi faucibus arcu accumsan lorem.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Four</td>
-									<td>Vitae integer tempus condimentum.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Five</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-							</tbody>
-							<tfoot>
-								<tr>
-									<td colspan="2"></td>
-									<td>100.00</td>
-								</tr>
-							</tfoot>
-						</table>
-					</div>
-				</section>
+            <h4>Alternate</h4>
+            <div class="table-wrapper">
+              <table class="alt">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Item One</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Two</td>
+                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
+                    <td>19.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Three</td>
+                    <td>Morbi faucibus arcu accumsan lorem.</td>
+                    <td>29.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Four</td>
+                    <td>Vitae integer tempus condimentum.</td>
+                    <td>19.99</td>
+                  </tr>
+                  <tr>
+                    <td>Item Five</td>
+                    <td>Ante turpis integer aliquet porttitor.</td>
+                    <td>29.99</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="2"></td>
+                    <td>100.00</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </section>
 
-				<section>
-					<h3 class="major">Buttons</h3>
-					<ul class="actions">
-						<li><a href="#" class="button primary">Primary</a></li>
-						<li><a href="#" class="button">Default</a></li>
-					</ul>
-					<ul class="actions">
-						<li><a href="#" class="button">Default</a></li>
-						<li><a href="#" class="button small">Small</a></li>
-					</ul>
-					<ul class="actions">
-						<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-						<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-					</ul>
-					<ul class="actions">
-						<li><span class="button primary disabled">Disabled</span></li>
-						<li><span class="button disabled">Disabled</span></li>
-					</ul>
-				</section>
+          <section>
+            <h3 class="major">Buttons</h3>
+            <ul class="actions">
+              <li><a href="#" class="button primary">Primary</a></li>
+              <li><a href="#" class="button">Default</a></li>
+            </ul>
+            <ul class="actions">
+              <li><a href="#" class="button">Default</a></li>
+              <li><a href="#" class="button small">Small</a></li>
+            </ul>
+            <ul class="actions">
+              <li>
+                <a href="#" class="button primary icon solid fa-download"
+                  >Icon</a
+                >
+              </li>
+              <li>
+                <a href="#" class="button icon solid fa-download">Icon</a>
+              </li>
+            </ul>
+            <ul class="actions">
+              <li><span class="button primary disabled">Disabled</span></li>
+              <li><span class="button disabled">Disabled</span></li>
+            </ul>
+          </section>
 
-				<section>
-					<h3 class="major">Form</h3>
-					<form method="post" action="#">
-						<div class="fields">
-							<div class="field half">
-								<label for="demo-name">Name</label>
-								<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-							</div>
-							<div class="field half">
-								<label for="demo-email">Email</label>
-								<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-							</div>
-							<div class="field">
-								<label for="demo-category">Category</label>
-								<select name="demo-category" id="demo-category">
-									<option value="">-</option>
-									<option value="1">Manufacturing</option>
-									<option value="1">Shipping</option>
-									<option value="1">Administration</option>
-									<option value="1">Human Resources</option>
-								</select>
-							</div>
-							<div class="field half">
-								<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-								<label for="demo-priority-low">Low</label>
-							</div>
-							<div class="field half">
-								<input type="radio" id="demo-priority-high" name="demo-priority">
-								<label for="demo-priority-high">High</label>
-							</div>
-							<div class="field half">
-								<input type="checkbox" id="demo-copy" name="demo-copy">
-								<label for="demo-copy">Email me a copy</label>
-							</div>
-							<div class="field half">
-								<input type="checkbox" id="demo-human" name="demo-human" checked>
-								<label for="demo-human">Not a robot</label>
-							</div>
-							<div class="field">
-								<label for="demo-message">Message</label>
-								<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-							</div>
-						</div>
-						<ul class="actions">
-							<li><input type="submit" value="Send Message" class="primary" /></li>
-							<li><input type="reset" value="Reset" /></li>
-						</ul>
-					</form>
-				</section>
+          <section>
+            <h3 class="major">Form</h3>
+            <form method="post" action="#">
+              <div class="fields">
+                <div class="field half">
+                  <label for="demo-name">Name</label>
+                  <input
+                    type="text"
+                    name="demo-name"
+                    id="demo-name"
+                    value=""
+                    placeholder="Jane Doe"
+                  />
+                </div>
+                <div class="field half">
+                  <label for="demo-email">Email</label>
+                  <input
+                    type="email"
+                    name="demo-email"
+                    id="demo-email"
+                    value=""
+                    placeholder="jane@untitled.tld"
+                  />
+                </div>
+                <div class="field">
+                  <label for="demo-category">Category</label>
+                  <select name="demo-category" id="demo-category">
+                    <option value="">-</option>
+                    <option value="1">Manufacturing</option>
+                    <option value="1">Shipping</option>
+                    <option value="1">Administration</option>
+                    <option value="1">Human Resources</option>
+                  </select>
+                </div>
+                <div class="field half">
+                  <input
+                    type="radio"
+                    id="demo-priority-low"
+                    name="demo-priority"
+                    checked
+                  />
+                  <label for="demo-priority-low">Low</label>
+                </div>
+                <div class="field half">
+                  <input
+                    type="radio"
+                    id="demo-priority-high"
+                    name="demo-priority"
+                  />
+                  <label for="demo-priority-high">High</label>
+                </div>
+                <div class="field half">
+                  <input type="checkbox" id="demo-copy" name="demo-copy" />
+                  <label for="demo-copy">Email me a copy</label>
+                </div>
+                <div class="field half">
+                  <input
+                    type="checkbox"
+                    id="demo-human"
+                    name="demo-human"
+                    checked
+                  />
+                  <label for="demo-human">Not a robot</label>
+                </div>
+                <div class="field">
+                  <label for="demo-message">Message</label>
+                  <textarea
+                    name="demo-message"
+                    id="demo-message"
+                    placeholder="Enter your message"
+                    rows="6"
+                  ></textarea>
+                </div>
+              </div>
+              <ul class="actions">
+                <li>
+                  <input type="submit" value="Send Message" class="primary" />
+                </li>
+                <li><input type="reset" value="Reset" /></li>
+              </ul>
+            </form>
+          </section>
+        </article>
+      </div>
 
-			</article>
+      <!-- Footer -->
+      <footer id="footer">
+        <p style="margin: 10px 0">
+          Welcome to
+          <span style="font-family: 'matrixregular'">The MATRIX</span>
+        </p>
+        <p class="copyright">&copy; Made by KSY (Kim Sangyoon)</p>
+        <!-- Design: <a href="https://html5up.net">HTML5 UP</a>. -->
+      </footer>
+    </div>
 
-		</div>
+    <!-- BG -->
+    <div id="bg"></div>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<p style="margin: 10px 0">Welcome to <span style="font-family: 'matrixregular'">The MATRIX</span></p>
-			<p class="copyright">&copy; Made by KSY (Kim Sangyoon)</p>
-			<!-- Design: <a href="https://html5up.net">HTML5 UP</a>. -->
-		</footer>
-
-	</div>
-
-	<!-- BG -->
-	<div id="bg"></div>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
-</body>
-
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>
