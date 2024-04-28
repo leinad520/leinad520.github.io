@@ -1858,6 +1858,19 @@ body.is-preload #footer {
 			min-height: 100%;
 		} */
 
+
+#date-container {
+	display: inline-block;
+
+}
+
+#date {
+	border-bottom: 1px solid white; 
+	font-size : smaller;
+	margin-bottom: 0.5rem;
+}
+
+
 .subtitle {
 	font-size: .7rem;
 }
