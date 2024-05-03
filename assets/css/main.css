@@ -1858,11 +1858,13 @@ body.is-preload #footer {
 			min-height: 100%;
 		} */
 
-.decorative-line {
-	border-top: 0; /* Remove default top border */
-	border-bottom: 1px dashed #ccc; /* Add dashed bottom border */
-	margin: 10px 0; /* Add spacing above and below the line */
-	}
+.horizontal-bar {
+	width: 50%; /* Adjust the width as needed */
+	height: 1px; /* Adjust the height as needed */
+	background-color: white; /* Adjust the color as needed */
+	margin-left: auto;
+	margin-right: auto;
+}
 
 
 #date-container {
