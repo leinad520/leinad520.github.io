@@ -1859,6 +1859,7 @@ body.is-preload #footer {
 		} */
 
 .horizontal-bar {
+	display: block;
 	width: 50%; /* Adjust the width as needed */
 	height: 1px; /* Adjust the height as needed */
 	background-color: white; /* Adjust the color as needed */
