@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ctx.fillStyle = "rgba(0, 0, 0, 0.03)"; // Lower opacity for longer trailing effect
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "rgba(0, 255, 0, 0.3)"; // Muted green with higher transparency
+        ctx.fillStyle = "rgba(0, 255, 0, 0.6)"; // Muted green with higher transparency
         ctx.font = `${fontSize}px monospace`;
 
         for (let i = 0; i < drops.length; i++) {
