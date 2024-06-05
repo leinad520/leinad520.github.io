@@ -1339,10 +1339,10 @@ button {
 	-webkit-transition: -webkit-transform 0.325s ease-in-out, -webkit-filter 0.325s ease-in-out;
 	-ms-transition: -ms-transform 0.325s ease-in-out, -ms-filter 0.325s ease-in-out;
 	transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out;
-	background-image: url("https://media.giphy.com/media/Y0cKnGMCBTNTi/giphy.gif");
-	background-position: center;
+	/* background-image: url("https://media.giphy.com/media/Y0cKnGMCBTNTi/giphy.gif"); */
+	/* background-position: center;
 	background-size: cover;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat; */
 	z-index: 1;
 }
 
@@ -1390,6 +1390,17 @@ body.is-preload #bg:before {
 #wrapper:before {
 	content: '';
 	display: block;
+}
+
+/* Matrix background */
+
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure it is behind other content */
 }
 
 @media screen and (max-width: 1680px) {
