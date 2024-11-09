@@ -1869,6 +1869,21 @@ body.is-preload #footer {
 			min-height: 100%;
 		} */
 
+.iframe-wrapper {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.iframe-wrapper iframe {
+	filter: brightness(0.7);
+	transition: filter 0.3s ease;
+  }
+  
+  .iframe-wrapper iframe:hover {
+	filter: brightness(1);
+  }
+
 .horizontal-bar {
 	display: block;
 	width: 50%; /* Adjust the width as needed */
