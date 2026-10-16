@@ -1,52 +1,173 @@
+// Matrix effects: ambient code rain, the name "decode" on load, and the
+// hidden red-pill mode (sound on + heavier rain).
 document.addEventListener("DOMContentLoaded", function () {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const glyphs =
+        "アカサタナハマヤラワイキシチニヒミリウクスツヌフムユルエケセテネヘメレオコソトノホモヨロ0123456789";
+
+    // ---------- Code rain ----------
     const canvas = document.createElement("canvas");
     canvas.id = "matrix";
+    canvas.setAttribute("aria-hidden", "true");
     document.body.appendChild(canvas);
     const ctx = canvas.getContext("2d");
 
-    function initializeCanvas() {
+    const fontSize = 16;
+    // Ambient: steady and moderately bright. Red pill: every column, faster, brightest.
+    const modes = {
+        ambient: { step: 80, density: 0.75, color: "rgba(0, 255, 140, 0.55)", fade: "rgba(0, 0, 0, 0.06)" },
+        // Red pill adds near-white leading characters, like the film.
+        redPill: { step: 45, density: 1, color: "rgba(0, 255, 149, 0.85)", fade: "rgba(0, 0, 0, 0.05)", head: "rgba(220, 255, 235, 0.95)" },
+    };
+    let mode = modes.ambient;
+    let columns = [];
+
+    function makeColumn() {
+        return {
+            y: -Math.floor(Math.random() * 60),
+            active: Math.random() < mode.density,
+        };
+    }
+
+    function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        const count = Math.floor(canvas.width / fontSize);
+        columns = Array.from({ length: count }, (_, i) => columns[i] || makeColumn());
     }
 
-    initializeCanvas();
-
-    const matrixChars = "アカサタナハマヤラワガザダバパイキシチニヒミリヰギジヂビピウクスツヌフムユルヲグズヅブプエケセテネヘメレヱゲゼデベペオコソトノホモヨロヺゴゾドボポ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const fontSize = 14;
-    let columns = Math.floor(canvas.width / fontSize);
-    let drops = Array(columns).fill(0);
-
-    function drawRain() {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.03)"; // Lower opacity for longer trailing effect
+    function draw() {
+        ctx.fillStyle = mode.fade;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "rgba(0, 255, 0, 0.6)"; // Muted green with higher transparency
+        ctx.fillStyle = mode.color;
         ctx.font = `${fontSize}px monospace`;
 
-        for (let i = 0; i < drops.length; i++) {
-            const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
+        columns.forEach((col, i) => {
+            if (col.active && col.y >= 0) {
+                const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
+                if (mode.head) {
+                    // Repaint the previous head in green, then draw the new bright head.
+                    ctx.fillStyle = mode.color;
+                    ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], i * fontSize, (col.y - 1) * fontSize);
+                    ctx.fillStyle = mode.head;
+                }
+                ctx.fillText(ch, i * fontSize, col.y * fontSize);
+                if (mode.head) ctx.fillStyle = mode.color;
             }
-
-            drops[i] += 1; // Uniform speed
-        }
+            col.y += 1;
+            if (col.y * fontSize > canvas.height && Math.random() > 0.97) {
+                col.y = -Math.floor(Math.random() * 20);
+                col.active = Math.random() < mode.density;
+            }
+        });
     }
 
-    const interval = setInterval(drawRain, 70); // Slightly slower interval for a subtle effect
+    let timer = null;
 
-    window.addEventListener("resize", () => {
-        initializeCanvas();
-        const newColumns = Math.floor(canvas.width / fontSize);
-        const newDrops = Array(newColumns).fill(0);
+    function tick() {
+        // Pause only while the tab is in the background.
+        if (!document.hidden) draw();
+        timer = setTimeout(tick, mode.step);
+    }
 
-        for (let i = 0; i < Math.min(columns, newColumns); i++) {
-            newDrops[i] = drops[i];
+    function start() {
+        if (timer !== null) return;
+        timer = setTimeout(tick, mode.step);
+    }
+
+    function stop() {
+        clearTimeout(timer);
+        timer = null;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function applyMotionPreference() {
+        if (reduceMotion.matches) stop();
+        else start();
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+    reduceMotion.addEventListener("change", applyMotionPreference);
+    applyMotionPreference();
+
+    // ---------- Name decode ----------
+    const name = document.getElementById("name");
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    // Wait for the Matrix font so each letter's measured width is final.
+    if (name && !reduceMotion.matches) fontsReady.then(decodeName);
+
+    function decodeName() {
+        const finalText = name.textContent.trim();
+        name.setAttribute("aria-label", finalText);
+        name.textContent = "";
+
+        const spans = [];
+        for (const ch of finalText) {
+            if (ch === " ") {
+                name.appendChild(document.createTextNode(" "));
+                continue;
+            }
+            const span = document.createElement("span");
+            span.className = "decode-char";
+            span.setAttribute("aria-hidden", "true");
+            span.textContent = ch;
+            name.appendChild(span);
+            spans.push({ el: span, ch });
         }
 
-        columns = newColumns;
-        drops = newDrops;
-    });
+        // Lock each letter's width so the line doesn't jump while scrambling.
+        spans.forEach((s) => (s.el.style.width = s.el.getBoundingClientRect().width + "px"));
+        spans.forEach((s) => {
+            s.el.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+            s.el.classList.add("scrambling");
+        });
+
+        const startDelay = 700; // let the header fade in first
+        const perLetter = 60;
+        const begin = performance.now() + startDelay;
+
+        const tick = setInterval(() => {
+            const now = performance.now();
+            let done = true;
+            spans.forEach((s, i) => {
+                if (now >= begin + 250 + i * perLetter) {
+                    if (s.el.classList.contains("scrambling")) {
+                        s.el.textContent = s.ch;
+                        s.el.classList.remove("scrambling");
+                    }
+                } else {
+                    done = false;
+                    s.el.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+                }
+            });
+            if (done) {
+                clearInterval(tick);
+                spans.forEach((s) => (s.el.style.width = ""));
+            }
+        }, 50);
+    }
+
+    // ---------- Red pill: sound + heavier rain ----------
+    const toggle = document.getElementById("sound-toggle");
+    const player = document.getElementById("player");
+    if (toggle && player) {
+        const icon = toggle.querySelector("i");
+        toggle.addEventListener("click", () => {
+            const on = toggle.getAttribute("aria-pressed") !== "true";
+            toggle.setAttribute("aria-pressed", String(on));
+            toggle.setAttribute("aria-label", on ? "Sound off" : "Take the red pill: sound on");
+            toggle.title = on ? "Back to the blue pill" : "Take the red pill";
+            icon.className = on ? "fas fa-volume-high" : "fas fa-volume-xmark";
+            document.body.classList.toggle("red-pill-mode", on);
+            mode = on ? modes.redPill : modes.ambient;
+            columns.forEach((c) => {
+                c.active = Math.random() < mode.density;
+                // Taking the red pill drops a wall of rain from the top at once.
+                if (on) c.y = -Math.floor(Math.random() * 6);
+            });
+            if (on) player.play();
+            else player.pause();
+        });
+    }
 });

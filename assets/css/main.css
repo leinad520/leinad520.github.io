@@ -1401,6 +1401,22 @@ body.is-preload #bg:before {
     width: 100%;
     height: 100%;
     z-index: -1; /* Ensure it is behind other content */
+    pointer-events: none;
+    /* Rain fades out toward the center, so it drifts at the edges only */
+    -webkit-mask-image: radial-gradient(ellipse 50% 45% at 50% 50%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 55%, #000 90%);
+    mask-image: radial-gradient(ellipse 50% 45% at 50% 50%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 55%, #000 90%);
+    transition: opacity 0.6s ease;
+}
+
+/* Red pill: rain fills the whole screen and the name glows */
+body.red-pill-mode #matrix {
+    -webkit-mask-image: none;
+    mask-image: none;
+}
+
+body.red-pill-mode #header h1.name {
+    text-shadow: 0 0 0.6rem rgba(0, 255, 149, 0.7), 0 0 1.6rem rgba(0, 255, 149, 0.35);
+    transition: text-shadow 0.6s ease;
 }
 
 @media screen and (max-width: 1680px) {
@@ -1916,12 +1932,126 @@ body.is-preload #footer {
 	justify-content: space-around;
 }
 
+/* Two greens: bright accent for navigation and highlights, a softer mint
+   for links inside long reading sections */
+:root {
+	--accent: #00ff95;
+	--link: #00ff95;
+}
+
 a {
-	color: #00ff95;
+	color: var(--link);
+}
+
+#header nav ul li a,
+#social-media a,
+.hello-text {
+	color: var(--accent);
+}
+
+/* Header: monogram, name, sound toggle */
+#header .logo .monogram {
+	display: block;
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.25rem;
+	padding-left: 0.25rem;
+	color: #ffffff;
+}
+
+#header h1.name {
+	font-family: 'matrixregular', sans-serif;
+	font-weight: normal;
+	font-size: 2.1rem;
+	letter-spacing: 0.3rem;
+	line-height: 1.35;
+	margin-bottom: 1.25rem;
+}
+
+#header h1.name .decode-char {
+	display: inline-block;
+	text-align: center;
+	transition: color 0.4s ease;
+}
+
+#header h1.name .decode-char.scrambling {
+	/* Katakana isn't in the Matrix font, so scrambling glyphs use a fallback */
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 300;
+	color: var(--accent);
+	opacity: 0.8;
+}
+
+@media screen and (max-width: 736px) {
+	#header h1.name {
+		font-size: 1.45rem;
+		letter-spacing: 0.3rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#header h1.name {
+		font-size: 1.2rem;
+		letter-spacing: 0.22rem;
+	}
+}
+
+/* Sound toggle fills the center circle */
+#header .logo .sound-toggle {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: transparent;
+	box-shadow: none;
+	line-height: inherit;
+	letter-spacing: 0;
+	font-size: 1.5rem;
+	/* !important beats the theme's forced green on every button */
+	color: rgba(255, 255, 255, 0.6) !important;
+	cursor: pointer;
+	transition: color 0.3s ease;
+}
+
+#header .logo .sound-toggle:hover {
+	color: var(--accent) !important;
+	background: rgba(255, 255, 255, 0.05);
+}
+
+#header .logo .sound-toggle[aria-pressed="true"] {
+	color: #ff4d4d !important;
+}
+
+#header .logo:has(.sound-toggle[aria-pressed="true"]) {
+	border-color: #ff4d4d;
+}
+
+/* Visitors who ask for less motion get a still page */
+@media (prefers-reduced-motion: reduce) {
+	.typewriter,
+	.typewriter-2,
+	.typewriter-3 {
+		animation: none !important;
+		border-right-color: transparent !important;
+	}
 }
 
 /* Stack the 6-item nav vertically before it overflows the screen */
-@media screen and (max-width: 820px) {
+#header nav ul li a {
+	width: 8.75rem;
+	min-width: 0;
+	padding: 0 0 0 0.2rem;
+	text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+	/* The theme's center line only suits the side-by-side menu */
+	#header nav.use-middle:after {
+		display: none;
+	}
+
 	#header nav ul {
 		flex-direction: column;
 		min-width: 10rem;
@@ -2189,7 +2319,7 @@ a {
 }
 
 .posts .post-title {
-	color: #00ff95;
+	color: var(--link);
 	font-weight: 600;
 	line-height: 1.4;
 }
@@ -2322,7 +2452,7 @@ a {
 }
 
 .video-grid .video-title {
-	color: #00ff95;
+	color: var(--link);
 	font-size: 0.9em;
 	line-height: 1.45;
 }

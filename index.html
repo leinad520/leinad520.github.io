@@ -22,16 +22,18 @@
       content="https://dksangyoon.com/images/thumbnail_proper.png"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Hi. I'm Daniel Sangyoon Kim" />
-    <meta property="og:description" content="Step inside the matrix." />
+    <meta property="og:title" content="Daniel Sangyoon Kim" />
+    <meta
+      property="og:description"
+      content="Investing, startups, code, books and life."
+    />
     <!-- <video autoplay muted loop id="myVideo">
 		</video> -->
   </head>
-  <audio id="player" loop src="./assets/Animatrix.mp3"></audio>
 
   <body class="is-preload">
-    <!-- Matrix Canvas -->
-    <canvas id="matrix"></canvas>
+    <audio id="player" loop preload="none" src="./assets/Animatrix.mp3"></audio>
+
     <!-- Wrapper -->
     <div id="wrapper">
       <!-- Header -->
@@ -90,26 +92,22 @@
           </li>
         </ul>
         <div style="margin: 0" class="logo">
-          <i
-            id="volume-btn"
-            class="fas fa-capsules blue-pill"
-            onclick="toggleFunc(this)"
+          <!-- Red pill easter egg: sound on + heavier code rain -->
+          <button
+            id="sound-toggle"
+            class="sound-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Take the red pill: sound on"
+            title="Take the red pill"
           >
-            <!-- fa-volume-mute -->
-            <p id="click">
-              CLICK
-              <i
-                id="volume-icon"
-                style="font-size: 13px"
-                class="fas fa-volume-mute"
-              ></i>
-            </p>
-          </i>
+            <i class="fas fa-volume-xmark"></i>
+          </button>
         </div>
 
         <div class="content">
           <div class="inner">
-            <h1 style="font-family: 'matrixregular">Sangyoon</h1>
+            <h1 id="name" class="name">Daniel Sangyoon Kim</h1>
             <div class="hello-container">
               <p class="typewriter hello-text">
                 You take the blue pill - the story ends.
@@ -1575,10 +1573,6 @@
 
       <!-- Footer -->
       <footer id="footer">
-        <p style="margin: 10px 0">
-          Welcome to
-          <span style="font-family: &quot;matrixregular&quot;">The MATRIX</span>
-        </p>
         <p class="copyright">&copy; Made by DSK</p>
         <!-- Design: <a href="https://html5up.net">HTML5 UP</a>. -->
       </footer>
