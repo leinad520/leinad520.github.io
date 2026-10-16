@@ -1956,9 +1956,15 @@ a {
 	color: rgba(255, 255, 255, 0.6);
 }
 
+/* An image followed by a caption keeps a fixed small gap at every screen size */
+.about-me .image.main:has(+ .caption),
+.about-me .image-pair:has(+ .caption) {
+	margin-bottom: 0.75rem;
+}
+
 .about-me .caption {
 	display: block;
-	margin: -1.75rem 0 2rem 0;
+	margin: 0 0 2rem 0;
 	text-align: center;
 	font-size: 0.75rem;
 	font-style: italic;
