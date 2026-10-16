@@ -94,8 +94,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // ---------- Name decode ----------
     const name = document.getElementById("name");
     const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+
+    // The pill quotes wait for the decode to finish before typing.
+    // A safety timer releases them even if the decode never runs.
+    function releaseQuotes() {
+        document.body.classList.add("name-decoded");
+    }
+    setTimeout(releaseQuotes, 5000);
+
     // Wait for the Matrix font so each letter's measured width is final.
     if (name && !reduceMotion.matches) fontsReady.then(decodeName);
+    else releaseQuotes();
 
     function decodeName() {
         const finalText = name.textContent.trim();
@@ -144,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (done) {
                 clearInterval(tick);
                 spans.forEach((s) => (s.el.style.width = ""));
+                setTimeout(releaseQuotes, 300);
             }
         }, 50);
     }

@@ -2028,6 +2028,26 @@ a {
 	border-color: #ff4d4d;
 }
 
+/* The pill quotes stay hidden and paused until the name finishes decoding */
+body .typewriter,
+body .typewriter-2,
+body .typewriter-3 {
+	animation-play-state: paused;
+}
+
+/* Hide the lines entirely, including the paused green cursor bar */
+body:not(.name-decoded) .typewriter,
+body:not(.name-decoded) .typewriter-2,
+body:not(.name-decoded) .typewriter-3 {
+	visibility: hidden;
+}
+
+body.name-decoded .typewriter,
+body.name-decoded .typewriter-2,
+body.name-decoded .typewriter-3 {
+	animation-play-state: running;
+}
+
 /* Visitors who ask for less motion get a still page */
 @media (prefers-reduced-motion: reduce) {
 	.typewriter,
