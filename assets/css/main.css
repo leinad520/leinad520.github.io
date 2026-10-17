@@ -1996,8 +1996,13 @@ a {
 	}
 }
 
-/* Sound toggle fills the center circle */
+/* Red pill toggle fills the center circle */
+#header .logo {
+	position: relative;
+}
+
 #header .logo .sound-toggle {
+	position: relative;
 	display: block;
 	width: 100%;
 	height: 100%;
@@ -2006,26 +2011,131 @@ a {
 	border-radius: 50%;
 	background: transparent;
 	box-shadow: none;
-	line-height: inherit;
+	line-height: 0;
 	letter-spacing: 0;
-	font-size: 1.5rem;
-	/* !important beats the theme's forced green on every button */
-	color: rgba(255, 255, 255, 0.6) !important;
 	cursor: pointer;
-	transition: color 0.3s ease;
 }
 
 #header .logo .sound-toggle:hover {
-	color: var(--accent) !important;
 	background: rgba(255, 255, 255, 0.05);
 }
 
-#header .logo .sound-toggle[aria-pressed="true"] {
+#header .logo .sound-toggle .pill {
+	width: 2.4rem;
+	height: 2.4rem;
+	transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+/* Blue pill at rest; red once taken */
+#header .logo .sound-toggle .pill-dark,
+#header .logo .sound-toggle .pill-light {
+	transition: fill 0.35s ease;
+}
+
+#header .logo .sound-toggle .pill-dark {
+	fill: #0d47a1;
+}
+
+#header .logo .sound-toggle .pill-light {
+	fill: #2f80ff;
+}
+
+#header .logo .sound-toggle[aria-pressed="true"] .pill-dark {
+	fill: #b71c1c;
+}
+
+#header .logo .sound-toggle[aria-pressed="true"] .pill-light {
+	fill: #ff4d4d;
+}
+
+/* Hover previews the other pill. Mouse devices only, since a tap on a phone
+   can leave the hover style stuck. */
+@media (hover: hover) {
+	#header .logo .sound-toggle:hover .pill {
+		transform: rotate(-12deg) scale(1.12);
+	}
+
+	#header .logo .sound-toggle:not([aria-pressed="true"]):not(.just-toggled):hover .pill-dark {
+		fill: #b71c1c;
+	}
+
+	#header .logo .sound-toggle:not([aria-pressed="true"]):not(.just-toggled):hover .pill-light {
+		fill: #ff4d4d;
+	}
+
+	#header .logo .sound-toggle[aria-pressed="true"]:not(.just-toggled):hover .pill-dark {
+		fill: #0d47a1;
+	}
+
+	#header .logo .sound-toggle[aria-pressed="true"]:not(.just-toggled):hover .pill-light {
+		fill: #2f80ff;
+	}
+}
+
+#header .logo .sound-toggle:focus-visible .pill {
+	transform: rotate(-12deg) scale(1.12);
+}
+
+/* Small speaker mark hints that sound is involved */
+#header .logo .sound-toggle .speaker {
+	position: absolute;
+	right: 1.05rem;
+	bottom: 1.05rem;
+	font-size: 0.6rem;
+	line-height: 1;
+	/* !important beats the theme's forced green on every button */
+	color: rgba(255, 255, 255, 0.55) !important;
+	transition: color 0.3s ease;
+}
+
+#header .logo .sound-toggle[aria-pressed="true"] .pill {
+	filter: drop-shadow(0 0 0.35rem rgba(255, 77, 77, 0.9));
+}
+
+#header .logo .sound-toggle[aria-pressed="true"] .speaker {
 	color: #ff4d4d !important;
 }
 
 #header .logo:has(.sound-toggle[aria-pressed="true"]) {
 	border-color: #ff4d4d;
+}
+
+/* A slow pulse invites the first click, starting once the name settles */
+#header .logo::after {
+	content: '';
+	position: absolute;
+	inset: -1px;
+	border: 1px solid rgba(255, 77, 77, 0.7);
+	border-radius: 50%;
+	opacity: 0;
+	pointer-events: none;
+}
+
+body.name-decoded #header .logo:not(.pill-taken)::after {
+	animation: pill-pulse 3s ease-out 0.5s infinite;
+}
+
+@keyframes pill-pulse {
+	0% {
+		transform: scale(1);
+		opacity: 0.8;
+	}
+
+	60% {
+		transform: scale(1.45);
+		opacity: 0;
+	}
+
+	100% {
+		transform: scale(1.45);
+		opacity: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#header .logo::after {
+		animation: none !important;
+	}
 }
 
 /* The pill quotes stay hidden and paused until the name finishes decoding */

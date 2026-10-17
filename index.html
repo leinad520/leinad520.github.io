@@ -32,7 +32,7 @@
   </head>
 
   <body class="is-preload">
-    <audio id="player" loop preload="none" src="./assets/Animatrix.mp3"></audio>
+    <audio id="player" loop preload="metadata" src="./assets/Animatrix.mp3"></audio>
 
     <!-- Wrapper -->
     <div id="wrapper">
@@ -98,10 +98,17 @@
             class="sound-toggle"
             type="button"
             aria-pressed="false"
-            aria-label="Take the red pill: sound on"
+            aria-label="Take the red pill (turns on sound)"
             title="Take the red pill"
           >
-            <i class="fas fa-volume-xmark"></i>
+            <svg class="pill" viewBox="0 0 24 24" aria-hidden="true">
+              <g transform="rotate(-45 12 12)">
+                <rect class="pill-dark" x="2.5" y="8.25" width="19" height="7.5" rx="3.75" />
+                <path class="pill-light" d="M12 8.25h5.75a3.75 3.75 0 0 1 0 7.5H12z" />
+                <rect x="5" y="9.5" width="13" height="1.4" rx="0.7" fill="#ffffff" opacity="0.35" />
+              </g>
+            </svg>
+            <i class="fas fa-volume-xmark speaker" aria-hidden="true"></i>
           </button>
         </div>
 

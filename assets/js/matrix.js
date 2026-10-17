@@ -162,13 +162,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const toggle = document.getElementById("sound-toggle");
     const player = document.getElementById("player");
     if (toggle && player) {
-        const icon = toggle.querySelector("i");
+        const icon = toggle.querySelector(".speaker");
+        const circle = toggle.closest(".logo");
+
+        // Start buffering the track as soon as someone shows intent to click,
+        // so sound starts right away without every visitor downloading it.
+        let warmed = false;
+        function warmUp() {
+            if (warmed) return;
+            warmed = true;
+            player.preload = "auto";
+            player.load();
+        }
+        ["pointerenter", "touchstart", "focus"].forEach((type) =>
+            toggle.addEventListener(type, warmUp, { passive: true })
+        );
+
+        // After a click, hold off the hover preview until the mouse leaves
+        // and comes back, so the new color is what you see.
+        toggle.addEventListener("pointerleave", () => toggle.classList.remove("just-toggled"));
+
         toggle.addEventListener("click", () => {
+            toggle.classList.add("just-toggled");
             const on = toggle.getAttribute("aria-pressed") !== "true";
             toggle.setAttribute("aria-pressed", String(on));
-            toggle.setAttribute("aria-label", on ? "Sound off" : "Take the red pill: sound on");
+            toggle.setAttribute("aria-label", on ? "Back to the blue pill (turns off sound)" : "Take the red pill (turns on sound)");
             toggle.title = on ? "Back to the blue pill" : "Take the red pill";
-            icon.className = on ? "fas fa-volume-high" : "fas fa-volume-xmark";
+            icon.className = (on ? "fas fa-volume-high" : "fas fa-volume-xmark") + " speaker";
+            // The invitation pulse stops for good once the pill has been taken.
+            if (circle) circle.classList.add("pill-taken");
             document.body.classList.toggle("red-pill-mode", on);
             mode = on ? modes.redPill : modes.ambient;
             columns.forEach((c) => {
