@@ -1,5 +1,5 @@
-// Matrix effects: ambient code rain, the name "decode" on load, and the
-// hidden red-pill mode (sound on + heavier rain).
+// Matrix intro: ambient code rain, the name "decode", the terminal-style
+// typed quotes, the entry gate, and the pill toggle (sound + heavier rain).
 document.addEventListener("DOMContentLoaded", function () {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const glyphs =
@@ -91,18 +91,108 @@ document.addEventListener("DOMContentLoaded", function () {
     reduceMotion.addEventListener("change", applyMotionPreference);
     applyMotionPreference();
 
+    // ---------- Entry gate ----------
+    // The inline script at the top of <body> decides whether to gate.
+    // The menu, social icons and footer stay hidden until the visitor takes
+    // the pill, scrolls, presses a key, or simply waits.
+    let revealed = !document.body.classList.contains("gated");
+
+    function reveal() {
+        if (revealed) return;
+        revealed = true;
+        document.body.classList.remove("gated");
+        document.body.classList.add("revealing");
+        setTimeout(() => document.body.classList.remove("revealing"), 2000);
+    }
+
+    if (!revealed) {
+        ["wheel", "touchmove", "keydown"].forEach((type) =>
+            window.addEventListener(type, reveal, { once: true, passive: true })
+        );
+    }
+
+    // ---------- Terminal-style quotes ----------
+    // Each line keeps its full text for screen readers; the visible copy is
+    // typed in character by character with a block cursor.
+    const termLines = Array.from(document.querySelectorAll(".term-line"));
+    termLines.forEach((el) => {
+        const text = el.textContent.trim().replace(/\s+/g, " ");
+        el.textContent = "";
+        const sr = document.createElement("span");
+        sr.className = "sr-only";
+        sr.textContent = text;
+        const typed = document.createElement("span");
+        typed.className = "term-typed";
+        typed.setAttribute("aria-hidden", "true");
+        el.append(sr, typed);
+        el.dataset.full = text;
+    });
+
+    const cursor = document.createElement("span");
+    cursor.className = "term-cursor";
+    cursor.setAttribute("aria-hidden", "true");
+
+    function onTypingDone() {
+        // If nobody has taken the pill a few seconds later, open the menu quietly.
+        setTimeout(reveal, 7000);
+    }
+
+    function typeLines() {
+        const visible = termLines.filter((el) => el.offsetParent !== null);
+        if (reduceMotion.matches) {
+            visible.forEach((el) => (el.querySelector(".term-typed").textContent = el.dataset.full));
+            onTypingDone();
+            return;
+        }
+        let line = 0;
+        function nextLine() {
+            if (line >= visible.length) {
+                cursor.classList.add("blink");
+                onTypingDone();
+                return;
+            }
+            const el = visible[line];
+            const typed = el.querySelector(".term-typed");
+            const text = el.dataset.full;
+            el.appendChild(cursor);
+            cursor.classList.remove("blink");
+            let i = 0;
+            (function step() {
+                if (i < text.length) {
+                    const ch = text[i++];
+                    typed.textContent += ch;
+                    // A human rhythm: jittered keystrokes, longer beats at punctuation.
+                    let delay = 32 + Math.random() * 48;
+                    if (ch === "," || ch === ";") delay += 170;
+                    if (ch === "." || ch === "?" || ch === "!") delay += 320;
+                    if (ch === "-") delay += 90;
+                    setTimeout(step, delay);
+                } else {
+                    line++;
+                    cursor.classList.add("blink");
+                    setTimeout(nextLine, 650);
+                }
+            })();
+        }
+        setTimeout(nextLine, 250);
+    }
+
     // ---------- Name decode ----------
     const name = document.getElementById("name");
     const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
 
-    // The pill quotes wait for the decode to finish before typing.
-    // A safety timer releases them even if the decode never runs.
+    // The quotes wait for the decode to finish before typing.
+    // A safety timer starts them even if the decode never runs.
+    let released = false;
     function releaseQuotes() {
+        if (released) return;
+        released = true;
         document.body.classList.add("name-decoded");
+        typeLines();
     }
     setTimeout(releaseQuotes, 5000);
 
-    // Wait for the Matrix font so each letter's measured width is final.
+    // Wait for the fonts so each letter's measured width is final.
     if (name && !reduceMotion.matches) fontsReady.then(decodeName);
     else releaseQuotes();
 
@@ -158,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 50);
     }
 
-    // ---------- Red pill: sound + heavier rain ----------
+    // ---------- Pill: enter the site, sound + heavier rain ----------
     const toggle = document.getElementById("sound-toggle");
     const player = document.getElementById("player");
     if (toggle && player) {
@@ -178,11 +268,26 @@ document.addEventListener("DOMContentLoaded", function () {
             toggle.addEventListener(type, warmUp, { passive: true })
         );
 
+        // Music eases in over two seconds rather than starting at full volume.
+        // (iPhones ignore volume changes, so there it starts at normal volume.)
+        let fade = null;
+        function fadeIn() {
+            clearInterval(fade);
+            player.volume = 0;
+            const startedAt = performance.now();
+            fade = setInterval(() => {
+                const t = Math.min(1, (performance.now() - startedAt) / 2000);
+                player.volume = t;
+                if (t >= 1) clearInterval(fade);
+            }, 50);
+        }
+
         // After a click, hold off the hover preview until the mouse leaves
         // and comes back, so the new color is what you see.
         toggle.addEventListener("pointerleave", () => toggle.classList.remove("just-toggled"));
 
         toggle.addEventListener("click", () => {
+            reveal();
             toggle.classList.add("just-toggled");
             const on = toggle.getAttribute("aria-pressed") !== "true";
             toggle.setAttribute("aria-pressed", String(on));
@@ -198,8 +303,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Taking the red pill drops a wall of rain from the top at once.
                 if (on) c.y = -Math.floor(Math.random() * 6);
             });
-            if (on) player.play();
-            else player.pause();
+            if (on) {
+                fadeIn();
+                player.play();
+            } else {
+                clearInterval(fade);
+                player.pause();
+            }
         });
     }
 });

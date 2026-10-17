@@ -8,6 +8,12 @@
       name="viewport"
       content="width=device-width, initial-scale=1"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap"
+    />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link
       rel="stylesheet"
@@ -32,6 +38,19 @@
   </head>
 
   <body class="is-preload">
+    <script>
+      // Entry gate: every visit starts with only the intro until the visitor
+      // takes the pill (or the menu fades in on its own). Direct section
+      // links and reduced-motion visitors skip it.
+      (function () {
+        try {
+          var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          if (!location.hash && !still) {
+            document.body.classList.add("gated");
+          }
+        } catch (e) {}
+      })();
+    </script>
     <audio id="player" loop preload="metadata" src="./assets/Animatrix.mp3"></audio>
 
     <!-- Wrapper -->
@@ -115,19 +134,15 @@
         <div class="content">
           <div class="inner">
             <h1 id="name" class="name">Daniel Sangyoon Kim</h1>
-            <div class="hello-container">
-              <p class="typewriter hello-text">
+            <div class="terminal">
+              <p class="term-line" data-show="wide">
                 You take the blue pill - the story ends.
               </p>
-            </div>
-            <div class="hello-container-2">
-              <p class="typewriter-2 hello-text">
+              <p class="term-line" data-show="wide">
                 You take the red pill, and I show you how deep the rabbit-hole
                 goes.
               </p>
-            </div>
-            <div class="hello-container-3">
-              <p class="typewriter-3 hello-text">Blue pill or red pill?</p>
+              <p class="term-line" data-show="narrow">Blue pill or red pill?</p>
             </div>
           </div>
         </div>

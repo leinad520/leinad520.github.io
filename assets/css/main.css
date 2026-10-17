@@ -2138,33 +2138,111 @@ body.name-decoded #header .logo:not(.pill-taken)::after {
 	}
 }
 
-/* The pill quotes stay hidden and paused until the name finishes decoding */
-body .typewriter,
-body .typewriter-2,
-body .typewriter-3 {
-	animation-play-state: paused;
+/* Terminal-style quotes, typed after the name decodes */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
 }
 
-/* Hide the lines entirely, including the paused green cursor bar */
-body:not(.name-decoded) .typewriter,
-body:not(.name-decoded) .typewriter-2,
-body:not(.name-decoded) .typewriter-3 {
+#header .terminal {
+	margin-top: 0.25rem;
+}
+
+#header .content p.term-line {
+	margin: 0;
+	min-height: 1.9em;
+	font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+	font-size: 0.85rem;
+	line-height: 1.9;
+	letter-spacing: 0.02em;
+	text-transform: none;
+	color: var(--accent);
+	text-shadow: 0 0 0.5rem rgba(0, 255, 149, 0.35);
+}
+
+#header .content p.term-line[data-show="narrow"] {
+	display: none;
+}
+
+@media screen and (max-width: 980px) {
+	#header .content p.term-line[data-show="wide"] {
+		display: none;
+	}
+
+	#header .content p.term-line[data-show="narrow"] {
+		display: block;
+	}
+}
+
+.term-cursor {
+	display: inline-block;
+	width: 0.55em;
+	height: 1.05em;
+	margin-left: 0.12em;
+	vertical-align: -0.17em;
+	background: var(--accent);
+	box-shadow: 0 0 0.45rem rgba(0, 255, 149, 0.6);
+}
+
+.term-cursor.blink {
+	animation: term-blink 1.06s steps(1) infinite;
+}
+
+@keyframes term-blink {
+	50% {
+		opacity: 0;
+	}
+}
+
+/* Entry gate: only the name, quotes and pill until the visitor enters */
+#header nav,
+#social-media,
+#footer {
+	transition: opacity 0.8s ease, transform 0.8s ease, visibility 0s linear 0s;
+}
+
+body.gated #header nav,
+body.gated #social-media,
+body.gated #footer {
+	opacity: 0;
 	visibility: hidden;
+	transform: translateY(0.6rem);
 }
 
-body.name-decoded .typewriter,
-body.name-decoded .typewriter-2,
-body.name-decoded .typewriter-3 {
-	animation-play-state: running;
+/* The six buttons arrive one after another */
+body.revealing #header nav ul li {
+	animation: nav-arrive 0.6s ease both;
+}
+
+body.revealing #header nav ul li:nth-child(2) { animation-delay: 0.08s; }
+body.revealing #header nav ul li:nth-child(3) { animation-delay: 0.16s; }
+body.revealing #header nav ul li:nth-child(4) { animation-delay: 0.24s; }
+body.revealing #header nav ul li:nth-child(5) { animation-delay: 0.32s; }
+body.revealing #header nav ul li:nth-child(6) { animation-delay: 0.4s; }
+
+@keyframes nav-arrive {
+	from {
+		opacity: 0;
+		transform: translateY(0.4rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
 }
 
 /* Visitors who ask for less motion get a still page */
 @media (prefers-reduced-motion: reduce) {
-	.typewriter,
-	.typewriter-2,
-	.typewriter-3 {
-		animation: none !important;
-		border-right-color: transparent !important;
+	.term-cursor {
+		display: none;
 	}
 }
 
