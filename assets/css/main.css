@@ -1405,13 +1405,21 @@ body.is-preload #bg:before {
     /* Rain fades out toward the center, so it drifts at the edges only */
     -webkit-mask-image: radial-gradient(ellipse 50% 45% at 50% 50%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 55%, #000 90%);
     mask-image: radial-gradient(ellipse 50% 45% at 50% 50%, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 55%, #000 90%);
-    transition: opacity 0.6s ease;
+    transition: opacity 1s ease;
 }
 
-/* Red pill: rain fills the whole screen and the name glows */
-body.red-pill-mode #matrix {
+/* Reading a section: the rain dims so it doesn't pull the eye. Both pills
+   look the same while reading. */
+body.is-article-visible #matrix {
+    opacity: 0.5;
+}
+
+/* Red pill: rain fills the whole screen and the name glows. Leaving a
+   section snaps straight back to it, with no fade. */
+body.red-pill-mode:not(.is-article-visible) #matrix {
     -webkit-mask-image: none;
     mask-image: none;
+    transition: none;
 }
 
 body.red-pill-mode #header h1.name {
@@ -2163,36 +2171,54 @@ body.name-decoded #header .logo:not(.pill-taken)::after {
 	line-height: 1.9;
 	letter-spacing: 0.02em;
 	text-transform: none;
+	text-align: center;
 	color: var(--accent);
 	text-shadow: 0 0 0.5rem rgba(0, 255, 149, 0.35);
 }
 
-#header .content p.term-line[data-show="narrow"] {
-	display: none;
+/* Characters sit in their final place from the start and are revealed one
+   by one, so wrapped rows stay centered and nothing shifts while typing */
+.term-char {
+	position: relative;
+	visibility: hidden;
 }
 
-@media screen and (max-width: 980px) {
-	#header .content p.term-line[data-show="wide"] {
-		display: none;
-	}
-
-	#header .content p.term-line[data-show="narrow"] {
-		display: block;
-	}
+.term-char.shown {
+	visibility: visible;
 }
 
-.term-cursor {
-	display: inline-block;
+/* Block cursor drawn beside a character, taking no space of its own */
+.term-char.cursor-after::after,
+.term-char.cursor-before::before {
+	content: '';
+	visibility: visible;
+	position: absolute;
+	top: 0.32em;
 	width: 0.55em;
 	height: 1.05em;
-	margin-left: 0.12em;
-	vertical-align: -0.17em;
 	background: var(--accent);
 	box-shadow: 0 0 0.45rem rgba(0, 255, 149, 0.6);
 }
 
-.term-cursor.blink {
+.term-char.cursor-after::after {
+	left: calc(100% + 0.12em);
+}
+
+.term-char.cursor-before::before {
+	right: calc(100% + 0.12em);
+}
+
+.term-chars.blink .term-char::after,
+.term-chars.blink .term-char::before {
 	animation: term-blink 1.06s steps(1) infinite;
+}
+
+/* On phones the longer line wraps; a touch smaller keeps it to two rows */
+@media screen and (max-width: 480px) {
+	#header .content p.term-line {
+		font-size: 0.8rem;
+		line-height: 1.75;
+	}
 }
 
 @keyframes term-blink {
@@ -2241,7 +2267,8 @@ body.revealing #header nav ul li:nth-child(6) { animation-delay: 0.4s; }
 
 /* Visitors who ask for less motion get a still page */
 @media (prefers-reduced-motion: reduce) {
-	.term-cursor {
+	.term-char::after,
+	.term-char::before {
 		display: none;
 	}
 }

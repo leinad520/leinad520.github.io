@@ -36,38 +36,62 @@ document.addEventListener("DOMContentLoaded", function () {
         columns = Array.from({ length: count }, (_, i) => columns[i] || makeColumn());
     }
 
+    // Reading a section always shows the calm blue-pill rain, whichever pill
+    // is taken; red-pill rain returns the moment the section closes.
+    function reading() {
+        return document.body.classList.contains("is-article-visible");
+    }
+    function current() {
+        return reading() ? modes.ambient : mode;
+    }
+
+    let drawn = null;
     function draw() {
-        ctx.fillStyle = mode.fade;
+        const m = current();
+        if (m !== drawn) {
+            // Switching look: re-pick which columns rain for the new density.
+            columns.forEach((c) => (c.active = Math.random() < m.density));
+            drawn = m;
+        }
+        ctx.fillStyle = m.fade;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = mode.color;
+        ctx.fillStyle = m.color;
         ctx.font = `${fontSize}px monospace`;
 
         columns.forEach((col, i) => {
             if (col.active && col.y >= 0) {
                 const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
-                if (mode.head) {
+                if (m.head) {
                     // Repaint the previous head in green, then draw the new bright head.
-                    ctx.fillStyle = mode.color;
+                    ctx.fillStyle = m.color;
                     ctx.fillText(glyphs[Math.floor(Math.random() * glyphs.length)], i * fontSize, (col.y - 1) * fontSize);
-                    ctx.fillStyle = mode.head;
+                    ctx.fillStyle = m.head;
                 }
                 ctx.fillText(ch, i * fontSize, col.y * fontSize);
-                if (mode.head) ctx.fillStyle = mode.color;
+                if (m.head) ctx.fillStyle = m.color;
             }
             col.y += 1;
             if (col.y * fontSize > canvas.height && Math.random() > 0.97) {
                 col.y = -Math.floor(Math.random() * 20);
-                col.active = Math.random() < mode.density;
+                col.active = Math.random() < m.density;
             }
         });
     }
 
     let timer = null;
 
+    // While a section is open, the rain eases to half speed (and the canvas
+    // dims in CSS). Closing a section eases back in blue-pill mode, but snaps
+    // straight back to full red-pill rain.
+    let slow = 1;
+
     function tick() {
+        if (reading()) slow += (2 - slow) * 0.12;
+        else if (mode === modes.redPill) slow = 1;
+        else slow += (1 - slow) * 0.12;
         // Pause only while the tab is in the background.
         if (!document.hidden) draw();
-        timer = setTimeout(tick, mode.step);
+        timer = setTimeout(tick, current().step * slow);
     }
 
     function start() {
@@ -85,6 +109,19 @@ document.addEventListener("DOMContentLoaded", function () {
         if (reduceMotion.matches) stop();
         else start();
     }
+
+    // Opening or closing a section takes effect right away rather than
+    // waiting out a slow reading-pace frame already queued.
+    let wasReading = reading();
+    new MutationObserver(() => {
+        const now = reading();
+        if (now === wasReading) return;
+        wasReading = now;
+        if (timer !== null) {
+            clearTimeout(timer);
+            timer = setTimeout(tick, 0);
+        }
+    }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
     resize();
     window.addEventListener("resize", resize);
@@ -112,8 +149,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ---------- Terminal-style quotes ----------
-    // Each line keeps its full text for screen readers; the visible copy is
-    // typed in character by character with a block cursor.
+    // Every character is laid out from the start in its final, centered
+    // position (wrapped rows included) but invisible. Typing reveals them one
+    // by one, so nothing shifts and the frame around the intro never resizes.
+    // Screen readers get each line's full text at once.
     const termLines = Array.from(document.querySelectorAll(".term-line"));
     termLines.forEach((el) => {
         const text = el.textContent.trim().replace(/\s+/g, " ");
@@ -121,47 +160,59 @@ document.addEventListener("DOMContentLoaded", function () {
         const sr = document.createElement("span");
         sr.className = "sr-only";
         sr.textContent = text;
-        const typed = document.createElement("span");
-        typed.className = "term-typed";
-        typed.setAttribute("aria-hidden", "true");
-        el.append(sr, typed);
-        el.dataset.full = text;
+        const chars = document.createElement("span");
+        chars.className = "term-chars";
+        chars.setAttribute("aria-hidden", "true");
+        for (const ch of text) {
+            const c = document.createElement("span");
+            c.className = "term-char";
+            c.textContent = ch;
+            chars.appendChild(c);
+        }
+        el.append(sr, chars);
     });
-
-    const cursor = document.createElement("span");
-    cursor.className = "term-cursor";
-    cursor.setAttribute("aria-hidden", "true");
 
     function onTypingDone() {
         // If nobody has taken the pill a few seconds later, open the menu quietly.
         setTimeout(reveal, 7000);
     }
 
+    // The cursor is drawn beside one character without taking up space.
+    let cursorAt = null;
+    function placeCursor(charEl, side) {
+        if (cursorAt) cursorAt.classList.remove("cursor-after", "cursor-before");
+        cursorAt = charEl;
+        if (charEl) charEl.classList.add(side === "before" ? "cursor-before" : "cursor-after");
+    }
+    function setBlink(on) {
+        document.querySelectorAll(".term-chars").forEach((c) => c.classList.toggle("blink", on));
+    }
+
     function typeLines() {
         const visible = termLines.filter((el) => el.offsetParent !== null);
         if (reduceMotion.matches) {
-            visible.forEach((el) => (el.querySelector(".term-typed").textContent = el.dataset.full));
+            visible.forEach((el) => el.querySelectorAll(".term-char").forEach((c) => c.classList.add("shown")));
             onTypingDone();
             return;
         }
         let line = 0;
         function nextLine() {
             if (line >= visible.length) {
-                cursor.classList.add("blink");
+                setBlink(true);
                 onTypingDone();
                 return;
             }
-            const el = visible[line];
-            const typed = el.querySelector(".term-typed");
-            const text = el.dataset.full;
-            el.appendChild(cursor);
-            cursor.classList.remove("blink");
+            const chars = Array.from(visible[line].querySelectorAll(".term-char"));
+            setBlink(false);
+            placeCursor(chars[0], "before");
             let i = 0;
             (function step() {
-                if (i < text.length) {
-                    const ch = text[i++];
-                    typed.textContent += ch;
+                if (i < chars.length) {
+                    const c = chars[i++];
+                    c.classList.add("shown");
+                    placeCursor(c, "after");
                     // A human rhythm: jittered keystrokes, longer beats at punctuation.
+                    const ch = c.textContent;
                     let delay = 32 + Math.random() * 48;
                     if (ch === "," || ch === ";") delay += 170;
                     if (ch === "." || ch === "?" || ch === "!") delay += 320;
@@ -169,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     setTimeout(step, delay);
                 } else {
                     line++;
-                    cursor.classList.add("blink");
+                    setBlink(true);
                     setTimeout(nextLine, 650);
                 }
             })();
