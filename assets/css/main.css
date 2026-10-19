@@ -2108,8 +2108,10 @@ a {
 	border-color: #ff4d4d;
 }
 
-/* A slow pulse invites the first click, starting once the name settles */
-#header .logo::after {
+/* A heartbeat invites the first click: two quick rings, then a rest.
+   It starts once the name finishes decoding. */
+#header .logo::after,
+#header .logo::before {
 	content: '';
 	position: absolute;
 	inset: -1px;
@@ -2119,17 +2121,71 @@ a {
 	pointer-events: none;
 }
 
-body.name-decoded #header .logo:not(.pill-taken)::after {
-	animation: pill-pulse 3s ease-out 0.5s infinite;
+/* The theme hides this circle's ::before (it draws connector lines
+   elsewhere), so switch it back on for the second ring. */
+#header .logo::before {
+	display: block;
+	top: -1px;
+	left: -1px;
+	width: auto;
+	height: auto;
+	background: none;
 }
 
-@keyframes pill-pulse {
+body.name-decoded #header .logo:not(.pill-taken)::after {
+	animation: pill-beat 2.6s ease-out 0.4s infinite;
+}
+
+body.name-decoded #header .logo:not(.pill-taken)::before {
+	animation: pill-beat 2.6s ease-out 0.75s infinite;
+}
+
+/* Between heartbeats (every second cycle) the pill gives a small nudge */
+body.name-decoded #header .logo:not(.pill-taken) .sound-toggle .pill {
+	animation: pill-nudge 5.2s ease-in-out 1.7s infinite;
+}
+
+/* Hovering takes over: the nudge stops so the hover tilt and color preview
+   aren't fighting it */
+body #header .logo:not(.pill-taken) .sound-toggle:hover .pill {
+	animation: none;
+}
+
+@keyframes pill-nudge {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	3% {
+		transform: rotate(-16deg) scale(1.06);
+	}
+
+	6% {
+		transform: rotate(11deg) scale(1.06);
+	}
+
+	9% {
+		transform: rotate(-6deg);
+	}
+
+	12% {
+		transform: rotate(3deg);
+	}
+
+	15%,
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+/* Each ring expands in the first ~0.9s of the cycle, then rests */
+@keyframes pill-beat {
 	0% {
 		transform: scale(1);
 		opacity: 0.8;
 	}
 
-	60% {
+	35% {
 		transform: scale(1.45);
 		opacity: 0;
 	}
@@ -2141,7 +2197,9 @@ body.name-decoded #header .logo:not(.pill-taken)::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	#header .logo::after {
+	#header .logo::after,
+	#header .logo::before,
+	#header .logo .sound-toggle .pill {
 		animation: none !important;
 	}
 }
