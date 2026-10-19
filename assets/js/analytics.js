@@ -110,8 +110,12 @@
             var href = a.getAttribute("href");
             if (!href || href.charAt(0) === "#") return;
             var article = a.closest("article");
+            // Cards (posts, videos, playlists) contain a date and summary too;
+            // use just their title. Otherwise the link's first line of text.
+            var titled = a.querySelector(".post-title, .video-title, .project-title");
+            var text = (titled ? titled.innerText : a.innerText) || a.getAttribute("aria-label") || "";
             window.dskTrack("link-click", {
-                label: (a.innerText || a.getAttribute("aria-label") || "").trim().slice(0, 60),
+                label: text.split("\n")[0].replace(/\s+/g, " ").trim().slice(0, 60),
                 href: href.split("?")[0].slice(0, 200),
                 section: article ? article.id : "header",
             });

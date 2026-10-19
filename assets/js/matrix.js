@@ -148,9 +148,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // A key press opens the menu right away, so keyboard users are never stuck.
+    // Shortcuts and modifier keys (Cmd+R to reload, Cmd+Tab to switch apps,
+    // Shift on its own...) don't count, so only real navigation keys unlock.
     // Scrolling and swiping only start working once the quotes finish typing
     // (see onTypingDone), so nobody skips the story by accident.
-    if (!revealed) window.addEventListener("keydown", () => reveal("key"), { once: true });
+    function onKey(e) {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        if (/^(Shift|Meta|Control|Alt|CapsLock|Fn|OS|F\d{1,2})$/.test(e.key)) return;
+        window.removeEventListener("keydown", onKey);
+        reveal("key");
+    }
+    if (!revealed) window.addEventListener("keydown", onKey);
 
     // ---------- Terminal-style quotes ----------
     // Every character is laid out from the start in its final, centered
