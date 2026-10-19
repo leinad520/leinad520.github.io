@@ -14,15 +14,27 @@
 //   link-click     a link or button inside the site was clicked
 //                  { label, href, section }
 //   contact-sent   the contact form was submitted
+//   reload         (sheet only) the visitor refreshed the page
 //
 // The same events also go to a Google Sheet (window.DSK_SHEET_URL), which
-// keeps one simple row per visit. A visit gets a random ID that lives only
-// in memory for that page load: no cookies, nothing stored on the device.
+// keeps one simple row per visit. A visit gets a random ID kept in the tab's
+// session storage, so a refresh stays the same visit (logged as "reload"
+// rather than leaving). It disappears when the tab closes; no cookies.
 (function () {
     var id = window.DSK_UMAMI_ID;
     var sheetUrl = window.DSK_SHEET_URL;
     var queue = [];
     var visit = Math.random().toString(36).slice(2, 12);
+    var reloaded = false;
+    try {
+        var nav = performance.getEntriesByType("navigation")[0];
+        var saved = sessionStorage.getItem("dsk-visit");
+        if (saved && /^[a-z0-9]{6,20}$/.test(saved)) {
+            visit = saved;
+            reloaded = !nav || nav.type === "reload";
+        }
+        sessionStorage.setItem("dsk-visit", visit);
+    } catch (e) {}
     var device = /iPad|Tablet/i.test(navigator.userAgent)
         ? "Tablet"
         : /Mobi|Android|iPhone/i.test(navigator.userAgent)
@@ -35,7 +47,7 @@
 
     function toSheet(name, data) {
         if (!sheetUrl) return;
-        var body = JSON.stringify({ visit: visit, event: name, data: data || {}, device: device, from: from });
+        var body = JSON.stringify({ visit: visit, event: name, data: data || {}, device: device, from: from, at: Date.now() });
         try {
             // sendBeacon survives the tab closing, which matters for "left-early".
             if (navigator.sendBeacon && navigator.sendBeacon(sheetUrl, new Blob([body], { type: "text/plain" }))) return;
@@ -69,8 +81,9 @@
 
     if (!id && !sheetUrl) return;
 
-    // Start the visit's row in the sheet as soon as the page loads.
-    toSheet("land", { seconds: 0 });
+    // Start the visit's row in the sheet as soon as the page loads. A refresh
+    // continues the same row and clears any "left early" from the reload.
+    toSheet(reloaded ? "reload" : "land", { seconds: 0 });
 
     if (id) loadUmami();
     document.addEventListener("DOMContentLoaded", wireUpEvents);
