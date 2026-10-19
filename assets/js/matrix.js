@@ -135,13 +135,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let revealed = !document.body.classList.contains("gated");
     const track = window.dskTrack || function () {};
 
-    // Visitors who skip the intro still count as entering, at second zero.
-    if (revealed) track("enter", { method: location.hash ? "direct-link" : "reduced-motion", seconds: 0 });
+    // Visitors who skip the intro still count as unlocking, at second zero.
+    if (revealed) track("unlock", { method: location.hash ? "direct-link" : "reduced-motion", seconds: 0 });
 
     function reveal(method) {
         if (revealed) return;
         revealed = true;
-        track("enter", { method: typeof method === "string" ? method : "unknown" });
+        track("unlock", { method: typeof method === "string" ? method : "unknown" });
         document.body.classList.remove("gated");
         document.body.classList.add("revealing");
         setTimeout(() => document.body.classList.remove("revealing"), 2000);
@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 50);
     }
 
-    // ---------- Pill: enter the site, sound + heavier rain ----------
+    // ---------- Pill: unlock the site, sound + heavier rain ----------
     const toggle = document.getElementById("sound-toggle");
     const player = document.getElementById("player");
     if (toggle && player) {
