@@ -1957,6 +1957,31 @@ a {
 	color: var(--accent);
 }
 
+/* Terminal font for short labels: menu buttons, post dates, footer.
+   Long reading text stays in the regular font. */
+:root {
+	--mono: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
+#header nav ul li a {
+	font-family: var(--mono);
+	text-transform: none;
+	letter-spacing: 0.04rem;
+	font-size: 0.85rem;
+}
+
+.posts .post-date,
+#footer .copyright {
+	font-family: var(--mono);
+}
+
+/* Footer in sentence case, like the menu */
+#footer .copyright {
+	text-transform: none;
+	letter-spacing: 0.04rem;
+	font-size: 0.75rem;
+}
+
 /* Header: monogram, name, sound toggle */
 #header .logo .monogram {
 	display: block;
@@ -2108,14 +2133,14 @@ a {
 	border-color: #ff4d4d;
 }
 
-/* A heartbeat invites the first click: two quick rings, then a rest.
-   It starts once the name finishes decoding. */
+/* A heartbeat invites the first click: two quick, faint blue rings in the
+   pill's color, then a rest. It starts once the name finishes decoding. */
 #header .logo::after,
 #header .logo::before {
 	content: '';
 	position: absolute;
 	inset: -1px;
-	border: 1px solid rgba(255, 77, 77, 0.7);
+	border: 1px solid rgba(47, 128, 255, 0.9);
 	border-radius: 50%;
 	opacity: 0;
 	pointer-events: none;
@@ -2224,7 +2249,7 @@ body #header .logo:not(.pill-taken) .sound-toggle:hover .pill {
 #header .content p.term-line {
 	margin: 0;
 	min-height: 1.9em;
-	font-family: 'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace;
+	font-family: var(--mono);
 	font-size: 0.85rem;
 	line-height: 1.9;
 	letter-spacing: 0.02em;

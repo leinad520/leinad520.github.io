@@ -133,20 +133,24 @@ document.addEventListener("DOMContentLoaded", function () {
     // The menu, social icons and footer stay hidden until the visitor takes
     // the pill, scrolls, presses a key, or simply waits.
     let revealed = !document.body.classList.contains("gated");
+    const track = window.dskTrack || function () {};
 
-    function reveal() {
+    // Visitors who skip the intro still count as entering, at second zero.
+    if (revealed) track("enter", { method: location.hash ? "direct-link" : "reduced-motion", seconds: 0 });
+
+    function reveal(method) {
         if (revealed) return;
         revealed = true;
+        track("enter", { method: typeof method === "string" ? method : "unknown" });
         document.body.classList.remove("gated");
         document.body.classList.add("revealing");
         setTimeout(() => document.body.classList.remove("revealing"), 2000);
     }
 
-    if (!revealed) {
-        ["wheel", "touchmove", "keydown"].forEach((type) =>
-            window.addEventListener(type, reveal, { once: true, passive: true })
-        );
-    }
+    // A key press opens the menu right away, so keyboard users are never stuck.
+    // Scrolling and swiping only start working once the quotes finish typing
+    // (see onTypingDone), so nobody skips the story by accident.
+    if (!revealed) window.addEventListener("keydown", () => reveal("key"), { once: true });
 
     // ---------- Terminal-style quotes ----------
     // Every character is laid out from the start in its final, centered
@@ -173,8 +177,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function onTypingDone() {
+        if (revealed) return;
+        window.addEventListener("wheel", () => reveal("scroll"), { once: true, passive: true });
+        window.addEventListener("touchmove", () => reveal("swipe"), { once: true, passive: true });
         // If nobody has taken the pill a few seconds later, open the menu quietly.
-        setTimeout(reveal, 7000);
+        setTimeout(() => reveal("timer"), 5000);
     }
 
     // The cursor is drawn beside one character without taking up space.
@@ -338,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toggle.addEventListener("pointerleave", () => toggle.classList.remove("just-toggled"));
 
         toggle.addEventListener("click", () => {
-            reveal();
+            reveal("pill");
             toggle.classList.add("just-toggled");
             const on = toggle.getAttribute("aria-pressed") !== "true";
             toggle.setAttribute("aria-pressed", String(on));
@@ -348,6 +355,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // The invitation pulse stops for good once the pill has been taken.
             if (circle) circle.classList.add("pill-taken");
             document.body.classList.toggle("red-pill-mode", on);
+            track("red-pill", { state: on ? "on" : "off" });
             mode = on ? modes.redPill : modes.ambient;
             columns.forEach((c) => {
                 c.active = Math.random() < mode.density;
