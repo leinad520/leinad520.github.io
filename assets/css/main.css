@@ -2397,6 +2397,57 @@ body.revealing #header nav ul li:nth-child(6) { animation-delay: 0.4s; }
 	}
 }
 
+/* Section tabs along the top of each open section, beside the close
+   button. On phones they wrap onto a second row so all of them show. */
+#main article .section-tabs {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 4rem;
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+	padding: 0 0 0 2.5rem;
+	white-space: nowrap;
+}
+
+#main article .section-tabs a {
+	font-family: var(--mono);
+	font-size: 0.75rem;
+	line-height: 1.2rem;
+	letter-spacing: 0.04rem;
+	color: rgba(255, 255, 255, 0.55);
+	border-bottom: solid 1px transparent;
+	padding: 0.15rem 0;
+	transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+#main article .section-tabs a:hover {
+	color: var(--accent);
+}
+
+#main article .section-tabs a[aria-current="page"] {
+	color: var(--accent);
+	border-bottom-color: var(--accent);
+}
+
+@media screen and (max-width: 736px) {
+	#main article {
+		padding-top: 1.25rem;
+	}
+
+	/* Back in the flow, so the heading moves down when the tabs wrap */
+	#main article .section-tabs {
+		position: static;
+		height: auto;
+		flex-wrap: wrap;
+		gap: 0.4rem 1rem;
+		padding: 0;
+		margin: 0 2.75rem 2rem 0;
+	}
+}
+
 /* About Me: chapter labels, captions, side-by-side screenshots */
 .about-me .chapter {
 	display: block;

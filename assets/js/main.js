@@ -291,6 +291,19 @@
 
 		var $this = $(this);
 
+		// Section tabs: a copy of the menu, so any other section is one
+		// click away without closing this one first.
+		var $tabs = $('<nav class="section-tabs" aria-label="Sections"></nav>');
+
+		$nav.find('a').each(function () {
+			var $link = $(this).clone();
+			if ($link.attr('href') == '#' + $this.attr('id'))
+				$link.attr('aria-current', 'page');
+			$tabs.append($link);
+		});
+
+		$tabs.prependTo($this);
+
 		// Close.
 		$('<div class="close">Close</div>')
 			.appendTo($this)
