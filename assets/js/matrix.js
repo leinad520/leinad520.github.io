@@ -29,9 +29,24 @@ document.addEventListener("DOMContentLoaded", function () {
         };
     }
 
+    // The canvas is sized to the tallest viewport in CSS, so a phone's address
+    // bar sliding in and out doesn't change it. When it does change (rotating,
+    // resizing a desktop window), the rain so far is copied over, since
+    // resizing a canvas wipes it.
     function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const w = canvas.clientWidth || window.innerWidth;
+        const h = canvas.clientHeight || window.innerHeight;
+        if (w === canvas.width && h === canvas.height) return;
+        let saved = null;
+        if (canvas.width && canvas.height) {
+            saved = document.createElement("canvas");
+            saved.width = canvas.width;
+            saved.height = canvas.height;
+            saved.getContext("2d").drawImage(canvas, 0, 0);
+        }
+        canvas.width = w;
+        canvas.height = h;
+        if (saved) ctx.drawImage(saved, 0, 0);
         const count = Math.floor(canvas.width / fontSize);
         columns = Array.from({ length: count }, (_, i) => columns[i] || makeColumn());
     }

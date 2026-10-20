@@ -1400,6 +1400,9 @@ body.is-preload #bg:before {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Tallest viewport on phones, so the address bar showing or hiding
+       doesn't resize (and wipe) the rain */
+    height: 100lvh;
     z-index: -1; /* Ensure it is behind other content */
     pointer-events: none;
     /* Rain fades out toward the center, so it drifts at the edges only */
