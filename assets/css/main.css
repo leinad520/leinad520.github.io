@@ -2137,7 +2137,8 @@ a {
 }
 
 /* A heartbeat invites the first click: two quick, faint blue rings in the
-   pill's color, then a rest. It starts once the name finishes decoding. */
+   pill's color, a shake right after, then a short rest. It starts once the
+   name finishes decoding. The rings and the shake share one cycle. */
 #header .logo::after,
 #header .logo::before {
 	content: '';
@@ -2161,16 +2162,16 @@ a {
 }
 
 body.name-decoded #header .logo:not(.pill-taken)::after {
-	animation: pill-beat 2.6s ease-out 0.4s infinite;
+	animation: pill-beat 2.8s ease-out 0.4s infinite;
 }
 
 body.name-decoded #header .logo:not(.pill-taken)::before {
-	animation: pill-beat 2.6s ease-out 0.75s infinite;
+	animation: pill-beat 2.8s ease-out 0.75s infinite;
 }
 
-/* Between heartbeats (every second cycle) the pill gives a small nudge */
+/* Just after the second ring, the pill gives a small nudge */
 body.name-decoded #header .logo:not(.pill-taken) .sound-toggle .pill {
-	animation: pill-nudge 5.2s ease-in-out 1.7s infinite;
+	animation: pill-nudge 2.8s ease-in-out 1.2s infinite;
 }
 
 /* Hovering takes over: the nudge stops so the hover tilt and color preview
@@ -2184,23 +2185,23 @@ body #header .logo:not(.pill-taken) .sound-toggle:hover .pill {
 		transform: rotate(0deg);
 	}
 
-	3% {
+	5.5% {
 		transform: rotate(-16deg) scale(1.06);
 	}
 
-	6% {
+	11% {
 		transform: rotate(11deg) scale(1.06);
 	}
 
-	9% {
+	16.5% {
 		transform: rotate(-6deg);
 	}
 
-	12% {
+	22% {
 		transform: rotate(3deg);
 	}
 
-	15%,
+	28%,
 	100% {
 		transform: rotate(0deg);
 	}
