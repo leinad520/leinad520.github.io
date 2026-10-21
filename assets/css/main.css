@@ -2412,24 +2412,58 @@ body.revealing #header nav ul li:nth-child(6) { animation-delay: 0.4s; }
 	white-space: nowrap;
 }
 
+/* Styled like a terminal: dim green labels, and the current section as a
+   command at the prompt with the same blinking cursor as the quotes.
+   Hovering a tab scrambles it through Matrix glyphs (matrix.js). */
 #main article .section-tabs a {
+	display: inline-block;
 	font-family: var(--mono);
 	font-size: 0.75rem;
 	line-height: 1.2rem;
 	letter-spacing: 0.04rem;
-	color: rgba(255, 255, 255, 0.55);
-	border-bottom: solid 1px transparent;
+	color: rgba(0, 255, 149, 0.45);
+	border-bottom: 0;
 	padding: 0.15rem 0;
-	transition: color 0.2s ease, border-bottom-color 0.2s ease;
+	transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 #main article .section-tabs a:hover {
 	color: var(--accent);
+	text-shadow: 0 0 0.4rem rgba(0, 255, 149, 0.6);
 }
 
 #main article .section-tabs a[aria-current="page"] {
 	color: var(--accent);
-	border-bottom-color: var(--accent);
+	text-shadow: 0 0 0.4rem rgba(0, 255, 149, 0.6);
+}
+
+#main article .section-tabs a[aria-current="page"]::before {
+	content: '> ';
+	white-space: pre;
+}
+
+#main article .section-tabs a[aria-current="page"]::after {
+	content: '';
+	display: inline-block;
+	width: 0.5em;
+	height: 1em;
+	margin-left: 0.2em;
+	vertical-align: -0.12em;
+	background: var(--accent);
+	box-shadow: 0 0 0.45rem rgba(0, 255, 149, 0.6);
+	animation: term-blink 1.06s steps(1) infinite;
+}
+
+/* A scrambling glyph that isn't in the mono font can't shift the layout */
+#main article .section-tabs a.scrambling {
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#main article .section-tabs a[aria-current="page"]::after {
+		animation: none;
+	}
 }
 
 @media screen and (max-width: 736px) {

@@ -329,6 +329,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 50);
     }
 
+    // ---------- Section tabs: scramble on hover ----------
+    // Pointing at a tab runs its letters through Matrix glyphs, which then
+    // settle left to right. Mouse only, so a tap on a phone just switches.
+    // Half-width katakana, as in the film, so the scramble stays narrow.
+    const tabGlyphs = "ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789";
+    document.querySelectorAll(".section-tabs a").forEach((tab) => {
+        const label = tab.textContent;
+        // Screen readers keep the real name while the letters scramble.
+        tab.setAttribute("aria-label", label);
+        let timer = null;
+        tab.addEventListener("pointerenter", (e) => {
+            if (e.pointerType !== "mouse" || reduceMotion.matches) return;
+            clearInterval(timer);
+            // Hold the width so the row doesn't shift while scrambling.
+            tab.textContent = label;
+            tab.style.width = tab.getBoundingClientRect().width + "px";
+            tab.classList.add("scrambling");
+            const began = performance.now();
+            timer = setInterval(() => {
+                const t = performance.now() - began;
+                let text = "";
+                for (let i = 0; i < label.length; i++) {
+                    const ch = label[i];
+                    text += ch === " " || t >= 90 + i * 35 ? ch : tabGlyphs[Math.floor(Math.random() * tabGlyphs.length)];
+                }
+                tab.textContent = text;
+                if (text === label && t >= 90 + label.length * 35) {
+                    clearInterval(timer);
+                    tab.style.width = "";
+                    tab.classList.remove("scrambling");
+                }
+            }, 40);
+        });
+    });
+
     // ---------- Pill: unlock the site, sound + heavier rain ----------
     const toggle = document.getElementById("sound-toggle");
     const player = document.getElementById("player");
