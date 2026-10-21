@@ -1,4 +1,5 @@
 // Privacy-friendly analytics through Umami (https://umami.is). No cookies.
+// The sheet log below does remember a browser between visits (see there).
 //
 // Nothing loads or is sent until a website ID is set in index.html
 // (window.DSK_UMAMI_ID). Umami records page views on its own; this file adds
@@ -20,6 +21,10 @@
 // keeps one simple row per visit. A visit gets a random ID kept in the tab's
 // session storage, so a refresh stays the same visit (logged as "reload"
 // rather than leaving). It disappears when the tab closes; no cookies.
+// A second random ID, kept in local storage, marks the browser, so the sheet
+// can tell a returning visitor from a new one. It says nothing about who
+// they are, and private windows, other browsers, or cleared site data get a
+// fresh one (Safari also clears it after about a week away).
 (function () {
     var id = window.DSK_UMAMI_ID;
     var sheetUrl = window.DSK_SHEET_URL;
@@ -35,6 +40,16 @@
         }
         sessionStorage.setItem("dsk-visit", visit);
     } catch (e) {}
+    var browser = "";
+    try {
+        browser = localStorage.getItem("dsk-browser") || "";
+        if (!/^[a-z0-9]{6,20}$/.test(browser)) {
+            browser = Math.random().toString(36).slice(2, 12);
+            localStorage.setItem("dsk-browser", browser);
+        }
+    } catch (e) {
+        browser = "";
+    }
     var device = /iPad|Tablet/i.test(navigator.userAgent)
         ? "Tablet"
         : /Mobi|Android|iPhone/i.test(navigator.userAgent)
@@ -47,7 +62,7 @@
 
     function toSheet(name, data) {
         if (!sheetUrl) return;
-        var body = JSON.stringify({ visit: visit, event: name, data: data || {}, device: device, from: from, at: Date.now() });
+        var body = JSON.stringify({ visit: visit, browser: browser, event: name, data: data || {}, device: device, from: from, at: Date.now() });
         try {
             // sendBeacon survives the tab closing, which matters for "left-early".
             if (navigator.sendBeacon && navigator.sendBeacon(sheetUrl, new Blob([body], { type: "text/plain" }))) return;
