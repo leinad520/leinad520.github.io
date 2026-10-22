@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function nextLine() {
             if (line >= visible.length) {
                 setBlink(true);
-                setTimeout(showHint, 300);
+                showHint();
                 onTypingDone();
                 return;
             }
@@ -292,7 +292,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else {
                     line++;
                     setBlink(true);
-                    setTimeout(nextLine, 500);
+                    // A short beat after the last line, so the hint follows quickly.
+                    setTimeout(nextLine, line < visible.length ? 500 : 150);
                 }
             })();
         }
