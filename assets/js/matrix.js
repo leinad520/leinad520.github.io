@@ -215,12 +215,32 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add("pill-called");
     }
 
+    // Once the quotes finish, the cursor moves beside the pill and types
+    // "← take it". It fades once the pill is taken.
+    const hint = document.querySelector(".pill-hint");
+    function showHint() {
+        if (!hint || document.querySelector("#header .logo.pill-taken")) return;
+        const label = "← take it";
+        placeCursor(null);
+        hint.classList.add("has-cursor");
+        if (reduceMotion.matches) {
+            hint.textContent = label;
+            return;
+        }
+        let n = 0;
+        (function step() {
+            hint.textContent = label.slice(0, ++n);
+            if (n < label.length) setTimeout(step, 45 + Math.random() * 40);
+            else hint.classList.add("blink");
+        })();
+    }
+
     function onTypingDone() {
         if (revealed) return;
         window.addEventListener("wheel", () => reveal("scroll"), { once: true, passive: true });
         window.addEventListener("touchmove", () => reveal("swipe"), { once: true, passive: true });
         // If nobody has taken the pill a few seconds later, open the menu quietly.
-        setTimeout(() => reveal("timer"), 2000);
+        setTimeout(() => reveal("timer"), 5000);
     }
 
     // The cursor is drawn beside one character without taking up space.
@@ -239,6 +259,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (reduceMotion.matches) {
             visible.forEach((el) => el.querySelectorAll(".term-char").forEach((c) => c.classList.add("shown")));
             callPill();
+            showHint();
             onTypingDone();
             return;
         }
@@ -246,6 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function nextLine() {
             if (line >= visible.length) {
                 setBlink(true);
+                setTimeout(showHint, 300);
                 onTypingDone();
                 return;
             }
