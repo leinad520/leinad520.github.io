@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("wheel", () => reveal("scroll"), { once: true, passive: true });
         window.addEventListener("touchmove", () => reveal("swipe"), { once: true, passive: true });
         // If nobody has taken the pill a few seconds later, open the menu quietly.
-        setTimeout(() => reveal("timer"), 5000);
+        setTimeout(() => reveal("timer"), 3000);
     }
 
     // The cursor is drawn beside one character without taking up space.
