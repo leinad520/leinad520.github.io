@@ -180,9 +180,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // position (wrapped rows included) but invisible. Typing reveals them one
     // by one, so nothing shifts and the frame around the intro never resizes.
     // Screen readers get each line's full text at once.
+    // The words "red pill" (marked data-pill) are wrapped so the pill can
+    // react the moment they're typed.
     const termLines = Array.from(document.querySelectorAll(".term-line"));
     termLines.forEach((el) => {
         const text = el.textContent.trim().replace(/\s+/g, " ");
+        const marked = el.querySelector("[data-pill]");
+        const phrase = marked ? marked.textContent.trim().replace(/\s+/g, " ") : "";
+        const at = phrase ? text.indexOf(phrase) : -1;
         el.textContent = "";
         const sr = document.createElement("span");
         sr.className = "sr-only";
@@ -190,21 +195,32 @@ document.addEventListener("DOMContentLoaded", function () {
         const chars = document.createElement("span");
         chars.className = "term-chars";
         chars.setAttribute("aria-hidden", "true");
+        const words = document.createElement("span");
+        words.className = "pill-words";
+        let i = 0;
         for (const ch of text) {
             const c = document.createElement("span");
             c.className = "term-char";
             c.textContent = ch;
-            chars.appendChild(c);
+            if (i === at) chars.appendChild(words);
+            (at >= 0 && i >= at && i < at + phrase.length ? words : chars).appendChild(c);
+            i++;
         }
         el.append(sr, chars);
     });
+
+    // Once "red pill" is typed, the pill's pulse restarts (in CSS), so the
+    // eye goes from the words to the pill.
+    function callPill() {
+        document.body.classList.add("pill-called");
+    }
 
     function onTypingDone() {
         if (revealed) return;
         window.addEventListener("wheel", () => reveal("scroll"), { once: true, passive: true });
         window.addEventListener("touchmove", () => reveal("swipe"), { once: true, passive: true });
         // If nobody has taken the pill a few seconds later, open the menu quietly.
-        setTimeout(() => reveal("timer"), 3000);
+        setTimeout(() => reveal("timer"), 2000);
     }
 
     // The cursor is drawn beside one character without taking up space.
@@ -222,6 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const visible = termLines.filter((el) => el.offsetParent !== null);
         if (reduceMotion.matches) {
             visible.forEach((el) => el.querySelectorAll(".term-char").forEach((c) => c.classList.add("shown")));
+            callPill();
             onTypingDone();
             return;
         }
@@ -241,17 +258,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     const c = chars[i++];
                     c.classList.add("shown");
                     placeCursor(c, "after");
+                    const parent = c.parentElement;
+                    if (parent.classList.contains("pill-words") && c === parent.lastElementChild) callPill();
                     // A human rhythm: jittered keystrokes, longer beats at punctuation.
                     const ch = c.textContent;
-                    let delay = 32 + Math.random() * 48;
-                    if (ch === "," || ch === ";") delay += 170;
-                    if (ch === "." || ch === "?" || ch === "!") delay += 320;
-                    if (ch === "-") delay += 90;
+                    let delay = 22 + Math.random() * 36;
+                    if (ch === "," || ch === ";") delay += 130;
+                    if (ch === "." || ch === "?" || ch === "!") delay += 240;
+                    if (ch === "-") delay += 70;
                     setTimeout(step, delay);
                 } else {
                     line++;
                     setBlink(true);
-                    setTimeout(nextLine, 650);
+                    setTimeout(nextLine, 500);
                 }
             })();
         }

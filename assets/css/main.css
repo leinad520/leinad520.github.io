@@ -2174,6 +2174,21 @@ body.name-decoded #header .logo:not(.pill-taken) .sound-toggle .pill {
 	animation: pill-nudge 2.8s ease-in-out 1.2s infinite;
 }
 
+/* Once "red pill" is typed, the rhythm restarts, so a pulse, pulse, shake
+   lands right as the words finish. (New animation names are what restart
+   it.) */
+body.name-decoded.pill-called #header .logo:not(.pill-taken)::after {
+	animation: pill-beat-again 2.8s ease-out 0.1s infinite;
+}
+
+body.name-decoded.pill-called #header .logo:not(.pill-taken)::before {
+	animation: pill-beat-again 2.8s ease-out 0.45s infinite;
+}
+
+body.name-decoded.pill-called #header .logo:not(.pill-taken) .sound-toggle:not(:hover) .pill {
+	animation: pill-nudge-again 2.8s ease-in-out 0.9s infinite;
+}
+
 /* Hovering takes over: the nudge stops so the hover tilt and color preview
    aren't fighting it */
 body #header .logo:not(.pill-taken) .sound-toggle:hover .pill {
@@ -2205,6 +2220,20 @@ body #header .logo:not(.pill-taken) .sound-toggle:hover .pill {
 	100% {
 		transform: rotate(0deg);
 	}
+}
+
+@keyframes pill-nudge-again {
+	0% { transform: rotate(0deg); }
+	5.5% { transform: rotate(-16deg) scale(1.06); }
+	11% { transform: rotate(11deg) scale(1.06); }
+	16.5% { transform: rotate(-6deg); }
+	22% { transform: rotate(3deg); }
+	28%, 100% { transform: rotate(0deg); }
+}
+
+@keyframes pill-beat-again {
+	0% { transform: scale(1); opacity: 0.8; }
+	35%, 100% { transform: scale(1.45); opacity: 0; }
 }
 
 /* Each ring expands in the first ~0.9s of the cycle, then rests */
